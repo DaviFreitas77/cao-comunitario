@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: 'white',
         gap: 40
     },
     text: {
@@ -239,7 +239,7 @@ const styles = StyleSheet.create({
         backgroundColor:'#dfdfdfdf',
         paddingBottom:30,
         padding:10,
-        borderBottomLeftRadius:20
+        borderBottomRightRadius:20
     },
     containerDesc:{
         flexDirection:"row",
