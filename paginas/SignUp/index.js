@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput,TouchableOpacity,Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AppLoading from 'expo-app-loading';
@@ -27,50 +27,61 @@ export default function SignIn() {
     }
 
     return (
-        <View style={styles.container}>
+        <KeyboardAvoidingView
+            style={styles.container}
+            keyboardVerticalOffset={20}
+        >
+
+
+            <ScrollView contentContainerStyle={styles.scrollContainer} keyboardShouldPersistTaps="handled">
             <TouchableOpacity
-            onPress={()=>navigation.navigate('Start')}
-            style={{width:"90%"}}>
-            <FontAwesome name="arrow-left" size={24} color="black" />
+                onPress={() => navigation.navigate('Start')}
+                style={{ width: "90%", marginHorizontal:10,
+                    height:90,justifyContent:"flex-end"
+                 }}
+            >
+                <FontAwesome name="arrow-left" size={24} color="black" />
             </TouchableOpacity>
             <Image
                 source={require('../../imagens/login/dog.png')}
                 style={styles.imgDog}
             />
-            <View style={styles.containerLogin}>
-           
-                <View style={{width:"100%",alignItems:"center",gap:15}}>
-                    <TextInput
-                        placeholder='Digite seu nome'
-                        onChangeText={(text) => setNome(text)}
-                        style={styles.input}
-                    />
-                    <TextInput
-                        placeholder='Digite seu melhor email'
-                        onChangeText={(text) => setEmail(text)}
-                        style={styles.input}
-                    />
-                    <TextInput
-                        placeholder='Digite sua senha'
-                        onChangeText={(text) => setSenha(text)}
-                        style={styles.input}
-                    />
-                    <TextInput
-                        placeholder='Digite seu número/whatsap'
-                        onChangeText={(text) => setNumero(text)}
-                        style={styles.input}
-                        keyboardType='number-pad'
-                    />
-                </View>
+                <View style={styles.containerLogin}>
+                    <View style={styles.inputsContainer}>
+                        <TextInput
+                            placeholder='Digite seu nome'
+                            onChangeText={(text) => setNome(text)}
+                            style={styles.input}
+                        />
+                        <TextInput
+                            placeholder='Digite seu melhor email'
+                            onChangeText={(text) => setEmail(text)}
+                            style={styles.input}
+                        />
+                        <TextInput
+                            placeholder='Digite sua senha'
+                            onChangeText={(text) => setSenha(text)}
+                            style={styles.input}
+                            secureTextEntry
+                        />
+                        <TextInput
+                            placeholder='Digite seu número/whatsapp'
+                            onChangeText={(text) => setNumero(text)}
+                            style={styles.input}
+                            keyboardType='number-pad'
+                        />
 
-                <TouchableOpacity style={styles.botao}>
-                    <Text style={{fontWeight:'bold',fontSize:16}}>
-                        Cadastrar
-                    </Text>
-                </TouchableOpacity>
-            </View>
+                        <TouchableOpacity style={styles.botao}>
+                            <Text style={{ fontWeight: 'bold', fontSize: 16 }}>
+                                Cadastrar
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
+            </ScrollView>
+
             <StatusBar style="auto" />
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 
@@ -78,17 +89,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ccf3dc',
+    },
+    scrollContainer: {
+        flexGrow: 1,
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
     containerLogin: {
         backgroundColor: "#fff",
-        height:'50%',
         width: '100%',
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
         alignItems: "center",
-        justifyContent: "space-around"
+        paddingVertical: 30,
+        paddingHorizontal: 15,
+    },
+    inputsContainer: {
+        width: "100%",
+        alignItems: "center",
+        gap: 15,
+        marginBottom: 20,
     },
     input: {
         borderWidth: 1,
@@ -96,27 +116,19 @@ const styles = StyleSheet.create({
         borderColor: '#ccf3dc',
         padding: 10,
         paddingLeft: 15,
-        width: '80%'
+        width: '80%',
     },
-    titulo: {
-        fontFamily: 'Poppins_400Regular',
-        fontSize: 24, 
-        fontWeight: 'bold' 
+    botao: {
+        backgroundColor: '#ccf3dc',
+        padding: 20,
+        width: '80%',
+        alignItems: "center",
+        borderRadius: 5,
+        marginTop: 20,
     },
-    botao:{
-        backgroundColor:'#ccf3dc',
-        padding:20,
-        width:'80%',
-        alignItems:"center",
-        borderRadius:5
-    },
-    imgDog:{
-       
-        width: 300, 
-        zIndex: 1, 
-    },
-    logo: {
-        width: 310,
-         height: 120
+    imgDog: {
+        width: 300,
+    
+
     },
 });

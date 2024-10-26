@@ -1,27 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity,Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import AppLoading from 'expo-app-loading';
-import {
-    useFonts,
-    Poppins_400Regular,
-    Poppins_700Bold,
-} from '@expo-google-fonts/poppins';
+import { Context } from '../../contexto/provider';
+import axios from 'axios';
+;
 
 export default function SignIn() {
     const navigation = useNavigation(); 
-    let [fontsLoaded] = useFonts({
-        Poppins_400Regular,
-        Poppins_700Bold,
-    });
-
+    const {setAdm,adm} = useContext(Context)
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    if (!fontsLoaded) {
-        return <AppLoading />;
+
+    const login = async() => {
+        try{
+            const response = await fetch('https://df40-2804-82c4-9c-3700-5166-720f-829f-722e.ngrok-free.app/api/loginUsuario',{
+               method: "POST",
+               headers:{
+                'Content-Type':'application/json',
+               },
+               body:JSON.stringify({email:email,senha:senha})
+            })
+
+            const data = await response.json();
+
+            if(data.message === 'Login como administrador bem-sucedido'){
+               navigation.navigate('InicioAdm')
+            }else if(data.message === 'Login como usuário bem-sucedido.'){
+                navigation.navigate('InicioUser')
+            }
+            
+            console.log(data)
+        }catch(error){
+            console.error('Erro:', error);
+        }
+        
+        
     }
 
     return (
@@ -54,7 +70,9 @@ export default function SignIn() {
                     />
                 </View>
 
-                <TouchableOpacity style={styles.botao}>
+                <TouchableOpacity 
+                onPress={login}
+                style={styles.botao}>
                     <Text style={{fontWeight:'bold',fontSize:16}}>
                         Entrar
                     </Text>

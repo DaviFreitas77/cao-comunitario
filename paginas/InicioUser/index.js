@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import Categoria from '../../Componentes/Categoria';
 const InicioUser = () => {
     const [botaoFiltro, setBotaoFiltro] = useState('')
     const corOriginal = '#dfdfdfdf';
@@ -34,33 +35,10 @@ const InicioUser = () => {
                 </View>
             </View>
 
-            <View style={styles.containerCategorias}>
-                <Text style={styles.txtCtegoria}>
-                    Categorias
-                </Text>
+          
+                <Categoria/>
+          
 
-                <View style={styles.containerBotaoFiltro}>
-
-                    <Pressable
-                        onPress={() => filtroAtivo('Cachorro')}
-                        style={[styles.botaoFiltro, { backgroundColor: botaoFiltro === 'Cachorro' ? corAtivada : corOriginal }]}>
-                        <Image
-                             source={require("../../imagens/inicioUser/cachorro.jpg")}
-                            style={styles.imgBotaoFiltro}
-                        />
-                        <Text>Cachorro</Text>
-                    </Pressable>
-                    <Pressable
-                        onPress={() => filtroAtivo('Gato')}
-                        style={[styles.botaoFiltro, { backgroundColor: botaoFiltro === 'Gato' ? corAtivada : corOriginal }]}>
-                        <Image
-                            source={require("../../imagens/inicioUser/gato.jpg")}
-                            style={styles.imgBotaoFiltro}
-                        />
-                        <Text>Gato</Text>
-                    </Pressable>
-                </View>
-            </View>
             <View style={styles.containerAnimal}>
                     <View style={styles.card}>
                         <Image 
@@ -189,32 +167,6 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18
     },
-    containerCategorias: {
-        width: "90%",
-        flex: .1,
-        gap: 20
-    },
-    containerBotaoFiltro: {
-        gap: 10,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    botaoFiltro: {
-        backgroundColor: "#dfdfdfdf",
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        borderRadius: 20,
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 10
-
-    },
-    imgBotaoFiltro: {
-        width: 30,
-        height: 30,
-        borderRadius: 20
-    },
     containerAnimal:{
         flexDirection:"row",
         flex:.7,
@@ -222,7 +174,8 @@ const styles = StyleSheet.create({
         flexWrap:'wrap',
         width:"100%",
         alignItems:"center",
-        justifyContent:'center'
+        justifyContent:'center',
+        marginTop:15
     },
     imgPet:{
         width:180,

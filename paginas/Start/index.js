@@ -20,7 +20,7 @@ export default function Start() {
                 />
 
                 <View style={styles.containerBotao}>
-                    <TouchableOpacity  onPress={()=>navigation.navigate('InicioUser')} style={styles.botao}>
+                    <TouchableOpacity  onPress={()=>navigation.navigate('SignIn')} style={styles.botao}>
                         <Text style={styles.txtBotao}>Entrar</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={()=>navigation.navigate('SignUp')} style={styles.botao}>
