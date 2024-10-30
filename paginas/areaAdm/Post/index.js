@@ -1,34 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TextInput, Image, Animated, Keyboard, Pressable } from 'react-native';
+import React, { useState, useEffect, useRef, useContext } from 'react';
+import { StyleSheet, Text, View, TextInput, Image, Animated, Keyboard, Pressable, Button } from 'react-native';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { Bar } from 'react-native-progress';
 import RNPickerSelect from 'react-native-picker-select';
-
+import { Context } from '../../../contexto/provider';
+import * as ImagePicker from 'expo-image-picker';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { storage } from '../../../service/conexaoFirebase';
+import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 const Post = () => {
+    const { urlApi } = useContext(Context)
+    const [image, setImage] = useState('');
+    const [urlImage, setUrlImage] = useState('')
     const totalSteps = 7;
     const [step, setStep] = useState(1);
-
     const [nome, setNome] = useState('');
-
     const [tipo, setTipo] = useState([])
-
     const [tipoPet, setTipoPet] = useState(null)
-
     const [pet, setPet] = useState(null)
     const [genero, setGenero] = useState([])
-
     const [idadePet, setIdadePet] = useState(null)
     const [idade, setIdade] = useState([])
-
-
+    const [arrayCuidado, setArrayCuidado] = useState([])
+    const [cuidadoPet, setCuidadoPet] = useState([])
+    const [arrayTemperamento, setArrayTemperamento] = useState([])
+    const [temperamentoPet, setTemperamentoPet] = useState([])
     const [racaPet, setRacaPet] = useState(null)
-
+    const [loading, setLoading] = useState(false);
     const keyboardHeight = useRef(new Animated.Value(0)).current;
+
+
+
 
     useEffect(() => {
         const fetchGenero = async () => {
             try {
-                const response = await fetch('https://df40-2804-82c4-9c-3700-5166-720f-829f-722e.ngrok-free.app/api/genero', {
+                const response = await fetch(`${urlApi}/api/genero`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
@@ -46,7 +53,7 @@ const Post = () => {
 
         const fetchIdade = async () => {
             try {
-                const response = await fetch('https://df40-2804-82c4-9c-3700-5166-720f-829f-722e.ngrok-free.app/api/idade', {
+                const response = await fetch(`${urlApi}/api/idade`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
@@ -54,7 +61,7 @@ const Post = () => {
                 })
 
                 const data = await response.json();
-                console.log(data)
+
                 setIdade(data)
 
             } catch (error) {
@@ -64,7 +71,7 @@ const Post = () => {
         }
         const fetchTipo = async () => {
             try {
-                const response = await fetch('https://df40-2804-82c4-9c-3700-5166-720f-829f-722e.ngrok-free.app/api/tipoPet', {
+                const response = await fetch(`${urlApi}/api/tipoPet`, {
                     method: "GET",
                     headers: {
                         'Content-Type': 'application/json',
@@ -72,7 +79,7 @@ const Post = () => {
                 })
 
                 const data = await response.json();
-                console.log(data)
+
                 setTipo(data)
 
             } catch (error) {
@@ -80,9 +87,44 @@ const Post = () => {
             }
 
         }
+        const fetchCuidados = async () => {
+            try {
+                const response = await fetch(`${urlApi}/api/cuidado`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                })
+
+                const data = await response.json()
+                setArrayCuidado(data)
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
+        const fetchTemperamento = async () => {
+            try {
+                const response = await fetch(`${urlApi}/api/temperamento`, {
+                    method: "GET",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                const data = await response.json()
+                setArrayTemperamento(data)
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+
         fetchGenero()
         fetchIdade()
         fetchTipo()
+        fetchCuidados()
+        fetchTemperamento()
     }, [])
 
     const progress = step / totalSteps;
@@ -116,8 +158,112 @@ const Post = () => {
         }
     };
 
+    const btnBack = () => {
+        if (step > 1) {
+            setStep(step - 1);
+        }
+    };
 
 
+
+    const handleCuidadoPress = (item) => {
+        if (cuidadoPet.includes(item.id_cuidado)) {
+            setCuidadoPet(cuidadoPet.filter(cuidado => cuidado !== item.id_cuidado));
+        } else {
+            // Caso contrário, adiciona-o
+            setCuidadoPet([...cuidadoPet, item.id_cuidado]);
+        }
+    }
+
+
+    const handleTempePress = (item) => {
+        if (temperamentoPet.includes(item.id_temperamento)) {
+            setTemperamentoPet(temperamentoPet.filter(temperamento => temperamento !== item.id_temperamento));
+        } else {
+            setTemperamentoPet([...temperamentoPet, item.id_temperamento]);
+        }
+    };
+
+    const cadastrarPet = async () => {
+        
+        try {
+          
+            const response = await fetch(`${urlApi}/api/cadastrarPet`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nomePet: nome,
+                    tipoPet: tipoPet,
+                    idadePet: idadePet,
+                    generoPet: pet,
+                    racaPet: racaPet,
+                    cuidadoPet: cuidadoPet,
+                    temperamentoPet: temperamentoPet,
+                    imagemPet: urlImage,
+                })
+            });
+
+
+
+
+            const data = await response.json();
+            console.log('Pet cadastrado com sucesso:', data);
+            setNome('')
+            setTipoPet('')
+            setIdadePet('')
+            setPet('')
+            setRacaPet('')
+            setCuidadoPet('')
+            setTemperamentoPet('')
+            setImage('')
+            setUrlImage('')
+            setStep(1)
+
+        } catch (error) {
+            console.error('Erro ao cadastrar o pet:', error);
+        }
+    };
+
+    const pickImage = async () => {
+     
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+        });
+
+        console.log(result);
+
+        if (!result.canceled) {
+            setImage(result.assets[0].uri);
+        }
+
+        const url = await uploadImage(result.assets[0].uri);
+       console.log(url)
+            setUrlImage(url);
+        
+
+    };
+
+    const uploadImage = async (imageUri) => {
+        setLoading(true);
+        const response = await fetch(imageUri);
+        const blob = await response.blob();
+        const filename = imageUri.split('/').pop();
+        const imageRef = ref(storage, `pets/${filename}`);
+
+     
+        try {
+            await uploadBytes(imageRef, blob);
+            const url = await getDownloadURL(imageRef);
+            return url;
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -127,11 +273,16 @@ const Post = () => {
                 style={styles.img}
             />
             <View style={{
-                width: '90%', marginTop: 60
+                width: '90%', marginTop: 120
 
             }}>
                 <Bar progress={progress} width={null} color="black" style={styles.progressBar} />
             </View>
+            {step > 1 && (
+                <Pressable onPress={btnBack} style={{ position: "absolute", top: 60, left: 10, padding: 10 }} accessibilityLabel="Voltar">
+                    <EvilIcons name="arrow-left" size={34} color="black" />
+                </Pressable>
+            )}
             {step === 1 && (
 
                 <View style={styles.innerContainer}>
@@ -160,6 +311,8 @@ const Post = () => {
 
             {step === 2 && (
                 <View style={styles.innerContainer}>
+
+
                     <Text style={styles.text}>Que Animal é  {nome}?</Text>
 
                     <RNPickerSelect
@@ -247,6 +400,7 @@ const Post = () => {
                         onChangeText={(text) => setRacaPet(text)}
                     />
 
+
                     <Pressable onPress={nextStep} style={[styles.button, { backgroundColor: '#ccf3dc' }]}>
                         <EvilIcons name="arrow-right" size={24} color="black" />
                     </Pressable>
@@ -256,13 +410,106 @@ const Post = () => {
             )}
             {step === 5 && (
                 <View style={styles.innerContainer}>
-                    <Text style={styles.text}>{nome} Cuidados veterinarios de {nome}</Text>
-                   
+                    <Text style={styles.text}>Cuidados veterinarios de {nome}</Text>
+                    <View style={styles.containerBtnCuidado}>
 
-                    <Pressable onPress={nextStep} style={[styles.button, { backgroundColor: '#ccf3dc' }]}>
-                        <EvilIcons name="arrow-right" size={24} color="black" />
-                    </Pressable>
+                        {arrayCuidado.map((item, index) => (
+                            <View key={index}>
+                                <Pressable
+                                    onPress={() => handleCuidadoPress(item)}
+                                    style={[
+                                        styles.selectCuidado,
+                                        cuidadoPet.includes(item.id_cuidado) ? styles.cuidadoSelecionado : null,
+                                    ]}
+                                >
+                                    <Text>
+                                        {item.desc_cuidado}
+                                    </Text>
+                                </Pressable>
+                            </View>
+                        ))}
+                    </View>
+                    {cuidadoPet.length === 0 ? (
+                        <Pressable style={[styles.button, { backgroundColor: '#dfdfdf' }]}>
+                            <EvilIcons name="arrow-right" size={24} color="black" />
+                        </Pressable>
 
+                    ) : (
+                        <Pressable onPress={nextStep} style={[styles.button, { backgroundColor: '#ccf3dc' }]}>
+                            <EvilIcons name="arrow-right" size={24} color="black" />
+                        </Pressable>
+
+                    )}
+
+                </View>
+
+            )}
+            {step === 6 && (
+                <View style={styles.innerContainer}>
+                    <Text style={styles.text}>temperamento de {nome}</Text>
+                    <View style={styles.containerBtnCuidado}>
+
+                        {arrayTemperamento.map((item, index) => (
+                            <View key={index}>
+                                <Pressable
+                                    onPress={() => handleTempePress(item)}
+                                    style={[
+                                        styles.selectCuidado,
+                                        temperamentoPet.includes(item.id_temperamento) ? styles.cuidadoSelecionado : null,
+                                    ]}
+                                >
+                                    <Text>
+                                        {item.desc_temperamento}
+                                    </Text>
+                                </Pressable>
+                            </View>
+                        ))}
+                    </View>
+                    {temperamentoPet.length === 0 ? (
+                        <Pressable style={[styles.button, { backgroundColor: '#dfdfdf' }]}>
+                            <EvilIcons name="arrow-right" size={24} color="black" />
+                        </Pressable>
+
+                    ) : (
+                        <Pressable onPress={nextStep} style={[styles.button, { backgroundColor: '#ccf3dc' }]}>
+                            <EvilIcons name="arrow-right" size={24} color="black" />
+                        </Pressable>
+
+                    )}
+                </View>
+
+            )}
+            {step === 7 && (
+                <View style={styles.innerContainer}>
+                    <Text style={styles.text}>imagem de {nome}</Text>
+                    <View style={styles.containerBtnCuidado}>
+
+                    { urlImage !== '' ? (
+                <Image
+                    source={{ uri: urlImage }}
+                    style={styles.image}
+                />
+            ) : (
+                <Pressable
+                    style={styles.btnCamera}
+                    onPress={pickImage}>
+                    <Ionicons name="camera-outline" size={24} color="black" />
+                </Pressable>
+            )}
+
+
+                    </View>
+                    {image === null ? (
+                        <Pressable style={[styles.button, { backgroundColor: '#dfdfdf' }]}>
+                            <EvilIcons name="arrow-right" size={24} color="black" />
+                        </Pressable>
+
+                    ) : (
+                        <Pressable onPress={cadastrarPet} style={[styles.button, { backgroundColor: '#ccf3dc' }]}>
+                            <EvilIcons name="arrow-right" size={24} color="black" />
+                        </Pressable>
+
+                    )}
                 </View>
 
             )}
@@ -329,6 +576,34 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         marginTop: 10,
         width: '100%'
+    },
+    containerBtnCuidado: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+        gap: 20,
+        alignItems: "center",
+        justifyContent: 'center',
+
+    },
+    selectCuidado: {
+        backgroundColor: '#ccf3dc',
+        paddingHorizontal: 40,
+        paddingVertical: 10,
+        borderRadius: 7
+    },
+    cuidadoSelecionado: {
+        backgroundColor: 'white',
+        borderColor: 'gray'
+    },
+    btnCamera: {
+        backgroundColor: '#ccf3dc',
+        padding: 80,
+        borderRadius: 5
+    },
+    image: {
+        width: 200,
+        height: 200,
+        borderRadius: 5
     },
 });
 

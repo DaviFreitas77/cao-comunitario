@@ -1,8 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View, Pressable, Image } from 'react-native';
-import { useState } from 'react';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, View, Pressable, Image, FlatList } from 'react-native';
+import { useState, useEffect } from 'react';
+import { Context } from '../../contexto/provider';
 
 const Categoria = () => {
+    const { urlApi } = useContext(Context)
+    const [pets, setPets] = useState([]);
     const [botaoFiltro, setBotaoFiltro] = useState('')
     const corOriginal = '#dfdfdfdf';
     const corAtivada = '#ccf3dc'
@@ -10,41 +13,95 @@ const Categoria = () => {
     const filtroAtivo = (item) => {
         setBotaoFiltro(item)
     }
+
+    const getFilteredPets = () => {
+        return botaoFiltro ? pets.filter((pet) => pet.desc_tipo_pet === botaoFiltro)
+        : pets;
+
+    };
+
+
+    useEffect(() => {
+        const fetchPets = async () => {
+            try {
+                const response = await fetch(`${urlApi}/api/petCadastrado`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                const data = await response.json();
+                console.log(data);
+                setPets(data);
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        fetchPets();
+    }, [pets]);
+
+
+    const renderItem = ({ item }) => {
+        return (
+            <View style={styles.card}>
+                <Image
+                    source={{ uri: item.imagem_pet }}
+                    style={styles.imgPet}
+                />
+                <View style={styles.descPet}>
+                    <Text style={styles.txtNome}>{item.nome_pet}</Text>
+                    <Text style={styles.txtInfo}>{item.desc_tipo_pet}</Text>
+                </View>
+
+            </View>
+        );
+    };
     return (
 
-        <View style={styles.containerCategorias}>
-            <Text style={styles.txtCtegoria}>
-                Categorias
-            </Text>
-
-            <View style={styles.containerBotaoFiltro}>
-
-                <Pressable
-                    onPress={() => filtroAtivo('Cachorro')}
-                    style={[styles.botaoFiltro, { backgroundColor: botaoFiltro === 'Cachorro' ? corAtivada : corOriginal }]}>
-                    <Image
-                        source={require("../../imagens/inicioUser/cachorro.jpg")}
-                        style={styles.imgBotaoFiltro}
-                    />
-                    <Text>Cachorro</Text>
-                </Pressable>
-                <Pressable
-                    onPress={() => filtroAtivo('Gato')}
-                    style={[styles.botaoFiltro, { backgroundColor: botaoFiltro === 'Gato' ? corAtivada : corOriginal }]}>
-                    <Image
-                        source={require("../../imagens/inicioUser/gato.jpg")}
-                        style={styles.imgBotaoFiltro}
-                    />
-                    <Text>Gato</Text>
-                </Pressable>
+        <View style={styles.container}>
+            <View style={styles.containerCategorias}>
+                <Text style={styles.txtCtegoria}>
+                    Categorias
+                </Text>
+                <View style={styles.containerBotaoFiltro}>
+                    <Pressable
+                        onPress={() => filtroAtivo('Cachorro')}
+                        style={[styles.botaoFiltro, { backgroundColor: botaoFiltro === 'Cachorro' ? corAtivada : corOriginal }]}>
+                        <Image
+                            source={require("../../imagens/inicioUser/cachorro.jpg")}
+                            style={styles.imgBotaoFiltro}
+                        />
+                        <Text>Cachorro</Text>
+                    </Pressable>
+                    <Pressable
+                        onPress={() => filtroAtivo('Gato')}
+                        style={[styles.botaoFiltro, { backgroundColor: botaoFiltro === 'Gato' ? corAtivada : corOriginal }]}>
+                        <Image
+                            source={require("../../imagens/inicioUser/gato.jpg")}
+                            style={styles.imgBotaoFiltro}
+                        />
+                        <Text>Gato</Text>
+                    </Pressable>
+                </View>
             </View>
+
+            <FlatList
+                data={getFilteredPets()}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.idPet.toString()}
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+            />
         </View>
 
     );
 };
 
 const styles = StyleSheet.create({
-
+    container:{
+    
+ 
+    },
     text: {
         fontSize: 24,
         fontWeight: 'bold',
@@ -56,14 +113,14 @@ const styles = StyleSheet.create({
         gap: 20
     },
     txtCtegoria: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginBottom: 10, 
+
+        fontSize: 22,
+        marginBottom: 10,
     },
     containerBotaoFiltro: {
         flexDirection: 'row',
-        justifyContent: 'space-between', 
-        width: '100%', 
+        justifyContent: 'space-between',
+        width: '100%',
         paddingHorizontal: 20,
     },
     botaoFiltro: {
@@ -81,7 +138,37 @@ const styles = StyleSheet.create({
         height: 30,
         borderRadius: 20
     },
+    card: {
+        backgroundColor: '#ccf3dc',
+        borderRadius: 10,
+        padding: 15,
+        marginRight: 15,
+        shadowColor: '#000',
+        alignItems: "center",
+        marginTop: 20,
+        marginBottom:80
 
+
+    },
+    imgPet: {
+        width: 210,
+        height: 210,
+        borderRadius: 10,
+    },
+    txtNome: {
+        fontWeight: "bold",
+        fontSize: 18,
+        marginTop: 5,
+    },
+    txtInfo: {
+        color: 'gray',
+        fontSize: 14,
+        marginTop: 2,
+    },
+    descPet: {
+
+        width: "100%"
+    }
 
 });
 

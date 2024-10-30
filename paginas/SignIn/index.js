@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput,TouchableOpacity,Image } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -9,14 +9,18 @@ import axios from 'axios';
 
 export default function SignIn() {
     const navigation = useNavigation(); 
-    const {setAdm,adm} = useContext(Context)
+    const {setAdm,adm,setUrlApi,urlApi} = useContext(Context)
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+
+    useEffect(()=>{
+        setUrlApi('https://edda-2804-82c4-9c-3700-94c9-e061-cfa6-62d0.ngrok-free.app')
+    },[urlApi])
 
 
     const login = async() => {
         try{
-            const response = await fetch('https://df40-2804-82c4-9c-3700-5166-720f-829f-722e.ngrok-free.app/api/loginUsuario',{
+            const response = await fetch(`${urlApi}/api/loginUsuario`,{
                method: "POST",
                headers:{
                 'Content-Type':'application/json',

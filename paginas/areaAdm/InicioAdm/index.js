@@ -1,15 +1,20 @@
-import React from 'react';
-import { StyleSheet, Text, View, Image, TextInput, ScrollView } from 'react-native';
-import Swiper from 'react-native-swiper';
+import React, { useContext, useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, FlatList } from 'react-native';
+
 import Feather from '@expo/vector-icons/Feather';
 import Categoria from '../../../Componentes/Categoria';
+import { Context } from '../../../contexto/provider';
+import Header from '../../../Componentes/Header';
 
 export default function InicioAdm() {
-    const data = [
-        { id: 1, image: require('../../../imagens/carrossel/imgCarrossel.jpg') },
-        { id: 2, image: require('../../../imagens/carrossel/imgCarrossel.jpg') },
-        { id: 3, image: require('../../../imagens/carrossel/imgCarrossel.jpg') },
-    ];
+  
+  
+
+  
+
+  
+
+   
 
     return (
         <ScrollView style={styles.container}>
@@ -34,17 +39,13 @@ export default function InicioAdm() {
                 />
             </View>
 
-            <Swiper  paginationStyle={styles.paginationStyle} style={styles.wrapper} showsPagination loop>
-                {data.map((item) => (
-                    <View key={item.id} style={styles.slide}>
-                        <Image source={item.image} style={styles.image} />
-                    </View>
-                ))}
-            </Swiper>
+            <Header/>
 
             <View style={styles.cat}>
                 <Categoria />
             </View>
+
+          
         </ScrollView>
     );
 }
@@ -86,22 +87,47 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: 250,
-        marginBottom: 30,
     },
     slide: {
         justifyContent: 'center',
         alignItems: 'center',
     },
-    paginationStyle:{
-        marginBottom:20
-    },  
+    paginationStyle: {
+        marginBottom: 20
+    },
     image: {
         width: '100%',
-        height: 250,
+        height: 220,
         resizeMode: 'cover',
         borderRadius: 20,
     },
-    cat: {
-        marginTop: 10,
+    card: {
+        backgroundColor: '#ccf3dc',
+        borderRadius: 10,
+        padding: 10,
+        marginRight: 15,
+        shadowColor: '#000',
+        alignItems:"center",
+        marginTop:20
+
     },
+    imgPet: {
+        width: 170,
+        height: 170,
+        borderRadius: 10,
+    },
+    txtNome: {
+        fontWeight: "bold",
+        fontSize: 18,
+        marginTop: 5,
+    },
+    txtInfo: {
+        color: 'gray',
+        fontSize: 14,
+        marginTop: 2,
+    },
+    descPet:{
+
+        width:"100%"
+    }
 });

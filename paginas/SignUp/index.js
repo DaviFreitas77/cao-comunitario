@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
@@ -9,6 +9,7 @@ import {
     Poppins_400Regular,
     Poppins_700Bold,
 } from '@expo-google-fonts/poppins';
+import { Context } from '../../contexto/provider';
 
 export default function SignIn() {
     const navigation = useNavigation(); 
@@ -21,6 +22,7 @@ export default function SignIn() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
+    const {urlApi} = useContext(Context)
 
     if (!fontsLoaded) {
         return <AppLoading />;

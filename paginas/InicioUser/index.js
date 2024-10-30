@@ -1,205 +1,133 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, Image, Pressable } from 'react-native';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import EvilIcons from '@expo/vector-icons/EvilIcons';
-import AntDesign from '@expo/vector-icons/AntDesign';
-import Categoria from '../../Componentes/Categoria';
-const InicioUser = () => {
-    const [botaoFiltro, setBotaoFiltro] = useState('')
-    const corOriginal = '#dfdfdfdf';
-    const corAtivada = '#ccf3dc'
+import React, { useContext, useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image, TextInput, ScrollView, FlatList } from 'react-native';
 
-    const filtroAtivo = (item) => {
-        setBotaoFiltro(item)
-    }
+import Feather from '@expo/vector-icons/Feather';
+import Categoria from '../../Componentes/Categoria';
+import { Context } from '../../contexto/provider';
+import Header from '../../Componentes/Header';
+
+export default function InicioUser() {
+  
+  
+
+  
+
+  
+
+   
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container}>
             <View style={styles.header}>
-                <View style={{ flexDirection: "row", alignItems: "center", gap: 10 }}>
-                    <Image
-                        source={require("../../imagens/inicioUser/user.png")}
-                        style={styles.imgPerfil}
-                    />
-                    <Text style={styles.text}>Davi Freitas</Text>
+                <View>
+                    <Text style={{ fontSize: 18, color: 'gray' }}>Olá,</Text>
+                    <Text style={{ fontSize: 22 }}>Davi</Text>
                 </View>
-                <View style={{ flexDirection: "row", gap: 20, alignItems: "center" }}>
-                    <Pressable>
-                        <EvilIcons name="search" size={35} color="black" />
-                    </Pressable>
+                <Image
+                    source={require("../../imagens/inicioUser/user.png")}
+                    style={styles.imgPerfil}
+                />
+            </View>
 
-                    <Pressable>
-                        <Ionicons name="notifications-outline" size={30} color="black" />
-                    </Pressable>
-
+            <View style={styles.searchContainer}>
+                <View style={styles.iconSearch}>
+                    <Feather name="search" size={24} color="#ccf3dc" />
                 </View>
+                <TextInput
+                    placeholder='Faça uma busca...'
+                    style={styles.input}
+                />
+            </View>
+
+            <Header/>
+
+            <View style={styles.cat}>
+                <Categoria />
             </View>
 
           
-                <Categoria/>
-          
-
-            <View style={styles.containerAnimal}>
-                    <View style={styles.card}>
-                        <Image 
-                               source={require("../../imagens/inicioUser/cachorro.jpg")}
-                               style={styles.imgPet}
-                        />
-                        <View style={styles.descPet}>
-                            <View style={styles.containerDesc}>
-                                <View style={{flexDirection:"row",gap:10}}>
-                                    <Text style={styles.nomePet}>
-                                        Bob
-                                    </Text>
-                                    <Ionicons name="male-outline" size={24} color="blue" />
-                                </View>
-
-                                <AntDesign name="hearto" size={24} color="red" />
-                            </View>
-                            <View style={{flexDirection:"row",gap:5}}>
-                                <Text style={styles.txtDesc}>Jovem |</Text>
-                                <Text style={styles.txtDesc}>Poodle </Text>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={styles.card}>
-                        <Image 
-                               source={require("../../imagens/inicioUser/cachorro.jpg")}
-                               style={styles.imgPet}
-                        />
-                        <View style={styles.descPet}>
-                            <View style={styles.containerDesc}>
-                                <View style={{flexDirection:"row",gap:10}}>
-                                    <Text style={styles.nomePet}>
-                                        Bob
-                                    </Text>
-                                    <Ionicons name="male-outline" size={24} color="blue" />
-                                </View>
-
-                                <AntDesign name="hearto" size={24} color="red" />
-                            </View>
-                            <View style={{flexDirection:"row",gap:5}}>
-                                <Text style={styles.txtDesc}>Jovem |</Text>
-                                <Text style={styles.txtDesc}>Poodle </Text>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={styles.card}>
-                        <Image 
-                               source={require("../../imagens/inicioUser/cachorro.jpg")}
-                               style={styles.imgPet}
-                        />
-                        <View style={styles.descPet}>
-                            <View style={styles.containerDesc}>
-                                <View style={{flexDirection:"row",gap:10}}>
-                                    <Text style={styles.nomePet}>
-                                        Bob
-                                    </Text>
-                                    <Ionicons name="male-outline" size={24} color="blue" />
-                                </View>
-
-                                <AntDesign name="hearto" size={24} color="red" />
-                            </View>
-                            <View style={{flexDirection:"row",gap:5}}>
-                                <Text style={styles.txtDesc}>Jovem |</Text>
-                                <Text style={styles.txtDesc}>Poodle </Text>
-                            </View>
-                        </View>
-                    </View>
-
-                    <View style={styles.card}>
-                        <Image 
-                               source={require("../../imagens/inicioUser/cachorro.jpg")}
-                               style={styles.imgPet}
-                        />
-                        <View style={styles.descPet}>
-                            <View style={styles.containerDesc}>
-                                <View style={{flexDirection:"row",gap:10}}>
-                                    <Text style={styles.nomePet}>
-                                        Bob
-                                    </Text>
-                                    <Ionicons name="male-outline" size={24} color="blue" />
-                                </View>
-
-                                <AntDesign name="hearto" size={24} color="red" />
-                            </View>
-                            <View style={{flexDirection:"row",gap:5}}>
-                                <Text style={styles.txtDesc}>Jovem |</Text>
-                                <Text style={styles.txtDesc}>Poodle </Text>
-                            </View>
-                        </View>
-                    </View>
-                    
-                    
-
-            </View> 
-        </View>
+        </ScrollView>
     );
-};
+}
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: 'white',
-        gap: 40
-    },
-    text: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-    imgPerfil: {
-        width: 50,
-        height: 50,
-        borderRadius: 40
+        backgroundColor: '#ffff',
+        paddingHorizontal: 20,
+        paddingTop: 55,
     },
     header: {
         flexDirection: "row",
         alignItems: "center",
-        gap: 10,
         justifyContent: "space-between",
-        width: "90%",
+        marginBottom: 20,
     },
-    txtCtegoria: {
-        fontWeight: 'bold',
-        fontSize: 18
+    imgPerfil: {
+        width: 50,
+        height: 50,
+        borderRadius: 40,
     },
-    containerAnimal:{
-        flexDirection:"row",
-        flex:.7,
-        gap:20,
-        flexWrap:'wrap',
-        width:"100%",
+    searchContainer: {
+        width: "100%",
+        marginBottom: 20,
+    },
+    input: {
+        padding: 10,
+        width: "100%",
+        borderWidth: 1,
+        borderColor: '#dfdfdf',
+        borderRadius: 10,
+        paddingLeft: 40,
+    },
+    iconSearch: {
+        position: "absolute",
+        top: 10,
+        left: 10,
+    },
+    wrapper: {
+        height: 250,
+    },
+    slide: {
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    paginationStyle: {
+        marginBottom: 20
+    },
+    image: {
+        width: '100%',
+        height: 220,
+        resizeMode: 'cover',
+        borderRadius: 20,
+    },
+    card: {
+        backgroundColor: '#ccf3dc',
+        borderRadius: 10,
+        padding: 10,
+        marginRight: 15,
+        shadowColor: '#000',
         alignItems:"center",
-        justifyContent:'center',
-        marginTop:15
+        marginTop:20
+
     },
-    imgPet:{
-        width:180,
-        height:150,
-        borderTopLeftRadius:20,
-  
+    imgPet: {
+        width: 170,
+        height: 170,
+        borderRadius: 10,
     },
-    nomePet:{
-        fontSize:17,
-        fontWeight:"bold"
+    txtNome: {
+        fontWeight: "bold",
+        fontSize: 18,
+        marginTop: 5,
+    },
+    txtInfo: {
+        color: 'gray',
+        fontSize: 14,
+        marginTop: 2,
     },
     descPet:{
-        gap:10,
-        backgroundColor:'#dfdfdfdf',
-        paddingBottom:30,
-        padding:10,
-        borderBottomRightRadius:20
-    },
-    containerDesc:{
-        flexDirection:"row",
-        gap:8,
-        justifyContent:"space-between"
-    }
-   
-});
 
-export default InicioUser;
+        width:"100%"
+    }
+});
