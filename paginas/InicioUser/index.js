@@ -8,14 +8,6 @@ import Header from '../../Componentes/Header';
 
 export default function InicioUser() {
   
-  
-
-  
-
-  
-
-   
-
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>

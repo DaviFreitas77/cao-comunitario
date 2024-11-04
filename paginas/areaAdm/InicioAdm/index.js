@@ -7,14 +7,7 @@ import { Context } from '../../../contexto/provider';
 import Header from '../../../Componentes/Header';
 
 export default function InicioAdm() {
-  
-  
 
-  
-
-  
-
-   
 
     return (
         <ScrollView style={styles.container}>

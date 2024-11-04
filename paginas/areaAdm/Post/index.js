@@ -128,6 +128,7 @@ const Post = () => {
     }, [])
 
     const progress = step / totalSteps;
+
     useEffect(() => {
         const keyboardShowListener = Keyboard.addListener('keyboardDidShow', (event) => {
             Animated.timing(keyboardHeight, {
@@ -185,9 +186,7 @@ const Post = () => {
     };
 
     const cadastrarPet = async () => {
-        
         try {
-          
             const response = await fetch(`${urlApi}/api/cadastrarPet`, {
                 method: 'POST',
                 headers: {

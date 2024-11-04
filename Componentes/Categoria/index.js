@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Pressable, Image, FlatList } from 'react-native';
 import { useState, useEffect } from 'react';
 import { Context } from '../../contexto/provider';
+import { useNavigation } from '@react-navigation/native';
 
 const Categoria = () => {
+    const navigation = useNavigation()
     const { urlApi } = useContext(Context)
     const [pets, setPets] = useState([]);
     const [botaoFiltro, setBotaoFiltro] = useState('')
@@ -16,7 +18,7 @@ const Categoria = () => {
 
     const getFilteredPets = () => {
         return botaoFiltro ? pets.filter((pet) => pet.desc_tipo_pet === botaoFiltro)
-        : pets;
+            : pets;
 
     };
 
@@ -31,7 +33,7 @@ const Categoria = () => {
                     }
                 });
                 const data = await response.json();
-                console.log(data);
+              
                 setPets(data);
             } catch (error) {
                 console.log(error);
@@ -43,7 +45,9 @@ const Categoria = () => {
 
     const renderItem = ({ item }) => {
         return (
-            <View style={styles.card}>
+            <Pressable  
+            onPress={() => navigation.navigate('PetInfo', { pet: item })}
+            style={styles.card}>
                 <Image
                     source={{ uri: item.imagem_pet }}
                     style={styles.imgPet}
@@ -53,7 +57,7 @@ const Categoria = () => {
                     <Text style={styles.txtInfo}>{item.desc_tipo_pet}</Text>
                 </View>
 
-            </View>
+            </Pressable>
         );
     };
     return (
@@ -98,9 +102,9 @@ const Categoria = () => {
 };
 
 const styles = StyleSheet.create({
-    container:{
-    
- 
+    container: {
+
+
     },
     text: {
         fontSize: 24,
@@ -139,14 +143,14 @@ const styles = StyleSheet.create({
         borderRadius: 20
     },
     card: {
-        backgroundColor: '#ccf3dc',
+        backgroundColor: '#dfdfdfdf',
         borderRadius: 10,
         padding: 15,
         marginRight: 15,
         shadowColor: '#000',
         alignItems: "center",
         marginTop: 20,
-        marginBottom:80
+        marginBottom: 80
 
 
     },

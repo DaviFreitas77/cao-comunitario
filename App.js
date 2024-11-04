@@ -19,7 +19,7 @@ import Favorito from './paginas/favoritos';
 import PerfilUser from './paginas/PerfilUser';
 import EditarPerfil from './paginas/PerfilUser/editar';
 import Sobre from './Componentes/Sobre';
-
+import PetInfo from './Componentes/PetInfo';
 //ADM pagina
 import InicioAdm from './paginas/areaAdm/InicioAdm';
 import PerfilAdm from './paginas/areaAdm/perfilAdm';
@@ -106,14 +106,14 @@ function TabAdm() {
 function MyStack() {
   return (
     <Provider>
-      <Stack.Navigator initialRouteName='Start'>
+      <Stack.Navigator initialRouteName='InicioUser'>
         <Stack.Screen name="Start" component={Start} options={{ headerShown: false }} />
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
         <Stack.Screen name="InicioUser" component={TabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{
           headerShown: true, headerTitle: "Meu perfil", headerTitleAlign: 'center',
-
+          
         }} />
        
         <Stack.Screen name="Sobre" component={Sobre} options={{
@@ -122,8 +122,8 @@ function MyStack() {
             backgroundColor: '#ccf3dc',
             
           }
-
         }} />
+        <Stack.Screen name="PetInfo" component={PetInfo} options={{ headerShown: false }} />
        
 
         {/* ADM PAGINA */}
