@@ -106,7 +106,7 @@ function TabAdm() {
 function MyStack() {
   return (
     <Provider>
-      <Stack.Navigator initialRouteName='InicioUser'>
+      <Stack.Navigator initialRouteName='InicioAdm'>
         <Stack.Screen name="Start" component={Start} options={{ headerShown: false }} />
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />

@@ -14,7 +14,7 @@ export default function SignIn() {
     const [senha, setSenha] = useState('');
 
     useEffect(()=>{
-        setUrlApi('http://192.168.1.74:8000');
+        setUrlApi('https://70aa-2804-7f0-b900-a8c4-6151-944f-64f-fc58.ngrok-free.app');
     },[urlApi])
 
 
