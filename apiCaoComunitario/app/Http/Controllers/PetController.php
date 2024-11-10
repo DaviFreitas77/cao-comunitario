@@ -73,9 +73,9 @@ class PetController extends Controller
             ->join('tb_pet_cuidado', 'pet.idPet', '=', 'tb_pet_cuidado.id_pet')
             ->join('tb_cuidado', 'tb_pet_cuidado.id_cuidado', '=', 'tb_cuidado.id_cuidado')
             ->join('tb_genero', 'pet.genero_pet', '=', 'tb_genero.id_genero')
-            ->join('tb_idade_pet', 'pet.idade_pet', '=', 'tb_idade_pet.id_idade')
-            ->join('tipo_pet', 'pet.tipo_pet', '=', 'tipo_pet.id_tipo_pet')
-            ->groupBy('pet.idPet', 'pet.nome_pet', 'pet.genero_pet', 'tb_genero.desc_genero', 'pet.idade_pet', 'tb_idade_pet.desc_idade', 'pet.raca_pet', 'pet.tipo_pet', 'tipo_pet.desc_tipo_pet', 'pet.imagem_pet')
+            ->join('tb_idade', 'pet.idade_pet', '=', 'tb_idade.id_idade')
+            ->join('tb_tipo', 'pet.tipo_pet', '=', 'tb_tipo.id_tipo')
+            ->groupBy('pet.id_pet', 'pet.nome_pet', 'pet.genero_pet', 'tb_genero.desc_genero', 'pet.idade_pet', 'tb_idade.desc_idade', 'pet.raca_pet', 'pet.tipo_pet', 'tb_tipo.desc_tipo', 'pet.imagem_pet')
             ->get();
         
         return response()->json($petsCadastrado);

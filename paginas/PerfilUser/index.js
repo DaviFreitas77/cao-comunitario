@@ -74,7 +74,11 @@ const PerfilUser = () => {
             </View>
             <AntDesign name="arrowright" size={24} color="#dfdfdf" />
           </Pressable>
-          <Pressable style={[styles.botao, { borderBottomColor: "white" }]}>
+          <Pressable 
+          onPress={()=>{
+            navigation.navigate('Start')
+          }}
+          style={[styles.botao, { borderBottomColor: "white" }]}>
             <View style={{ flexDirection: "row", gap: 10 }}>
             <MaterialIcons name="logout" size={24} color="red" />
               <Text style={styles.txtBotao}>Sair</Text>

@@ -8,6 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { storage } from '../../../service/conexaoFirebase';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
+import ModalPetCadastrado from '../../../Componentes/ModalPetCadastrado';
 const Post = () => {
     const { urlApi } = useContext(Context)
     const [image, setImage] = useState('');
@@ -27,6 +28,7 @@ const Post = () => {
     const [temperamentoPet, setTemperamentoPet] = useState([])
     const [racaPet, setRacaPet] = useState(null)
     const [loading, setLoading] = useState(false);
+    const [modalVisible, setModalVisible] = useState(false);
     const keyboardHeight = useRef(new Animated.Value(0)).current;
 
 
@@ -185,9 +187,12 @@ const Post = () => {
         }
     };
 
+    const fecharModal = () => {
+        setModalVisible(false);
+    };
     const cadastrarPet = async () => {
         try {
-            const response = await fetch(`${urlApi}/api/cadastrarPet`, {
+            const response = await fetch(`${urlApi}/api/cadastroPet`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -209,6 +214,7 @@ const Post = () => {
 
             const data = await response.json();
             console.log('Pet cadastrado com sucesso:', data);
+            setModalVisible(true);
             setNome('')
             setTipoPet('')
             setIdadePet('')
@@ -226,7 +232,7 @@ const Post = () => {
     };
 
     const pickImage = async () => {
-     
+
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.All,
             allowsEditing: true,
@@ -241,9 +247,9 @@ const Post = () => {
         }
 
         const url = await uploadImage(result.assets[0].uri);
-       console.log(url)
-            setUrlImage(url);
-        
+        console.log(url)
+        setUrlImage(url);
+
 
     };
 
@@ -254,7 +260,7 @@ const Post = () => {
         const filename = imageUri.split('/').pop();
         const imageRef = ref(storage, `pets/${filename}`);
 
-     
+
         try {
             await uploadBytes(imageRef, blob);
             const url = await getDownloadURL(imageRef);
@@ -322,7 +328,7 @@ const Post = () => {
                         onValueChange={(value) => setTipoPet(value)}
                         items={tipo.map(g => ({
                             label: g.desc_tipo_pet,
-                            value: g.id_tipo_pet,
+                            value: g.id_tipo,
                         }))}
 
                     />
@@ -483,18 +489,18 @@ const Post = () => {
                     <Text style={styles.text}>imagem de {nome}</Text>
                     <View style={styles.containerBtnCuidado}>
 
-                    { urlImage !== '' ? (
-                <Image
-                    source={{ uri: urlImage }}
-                    style={styles.image}
-                />
-            ) : (
-                <Pressable
-                    style={styles.btnCamera}
-                    onPress={pickImage}>
-                    <Ionicons name="camera-outline" size={24} color="black" />
-                </Pressable>
-            )}
+                        {urlImage !== '' ? (
+                            <Image
+                                source={{ uri: urlImage }}
+                                style={styles.image}
+                            />
+                        ) : (
+                            <Pressable
+                                style={styles.btnCamera}
+                                onPress={pickImage}>
+                                <Ionicons name="camera-outline" size={24} color="black" />
+                            </Pressable>
+                        )}
 
 
                     </View>
@@ -512,6 +518,8 @@ const Post = () => {
                 </View>
 
             )}
+
+            <ModalPetCadastrado isVisible={modalVisible} onClose={fecharModal} />
         </View>
     );
 };

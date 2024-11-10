@@ -14,13 +14,13 @@ export default function SignIn() {
     const [senha, setSenha] = useState('');
 
     useEffect(()=>{
-        setUrlApi('https://70aa-2804-7f0-b900-a8c4-6151-944f-64f-fc58.ngrok-free.app');
+        setUrlApi('https://c0da-2804-7f0-b900-a8c4-30cc-474a-cbed-19fc.ngrok-free.app');
     },[urlApi])
 
 
     const login = async() => {
         try{
-            const response = await fetch(`${urlApi}/api/loginUsuario`,{
+            const response = await fetch(`${urlApi}/api/login`,{
                method: "POST",
                headers:{
                 'Content-Type':'application/json',
@@ -31,9 +31,10 @@ export default function SignIn() {
             const data = await response.json();
 
             if(data.message === 'Login como administrador bem-sucedido'){
-               navigation.navigate('InicioAdm')
+               navigation.replace('InicioAdm')
+               setAdm(true)
             }else if(data.message === 'Login como usuário bem-sucedido.'){
-                navigation.navigate('InicioUser')
+                navigation.replace('InicioUser')
             }
             
             console.log(data)

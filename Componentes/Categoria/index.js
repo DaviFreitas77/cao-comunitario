@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { Context } from '../../contexto/provider';
 import { useNavigation } from '@react-navigation/native';
 
+
 const Categoria = () => {
+
     const navigation = useNavigation()
     const { urlApi } = useContext(Context)
     const [pets, setPets] = useState([]);
@@ -26,7 +28,7 @@ const Categoria = () => {
     useEffect(() => {
         const fetchPets = async () => {
             try {
-                const response = await fetch(`${urlApi}/api/petCadastrado`, {
+                const response = await fetch(`${urlApi}/api/pets`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -92,7 +94,7 @@ const Categoria = () => {
             <FlatList
                 data={getFilteredPets()}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.idPet.toString()}
+                keyExtractor={(item) => item.idPet}
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             />

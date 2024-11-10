@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class cadastroPet extends Model
+class CadastroPet extends Model
 {
     protected $table = 'tb_pet';
 

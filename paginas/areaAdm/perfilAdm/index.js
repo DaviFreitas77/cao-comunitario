@@ -1,6 +1,6 @@
 // App.js
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -8,8 +8,10 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Entypo from '@expo/vector-icons/Entypo';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
+import { Context } from '../../../contexto/provider';
 
 const PerfilAdm = () => {
+  const {setAdm} = useContext(Context)
   const navigation = useNavigation(); 
   return (
     <View style={styles.container}>
@@ -76,7 +78,12 @@ const PerfilAdm = () => {
             </View>
             <AntDesign name="arrowright" size={24} color="#dfdfdf" />
           </Pressable>
-          <Pressable style={[styles.botao, { borderBottomColor: "white" }]}>
+          <Pressable
+            onPress={()=>{
+              navigation.navigate('Start')
+              setAdm(false)
+            }}
+          style={[styles.botao, { borderBottomColor: "white" }]}>
             <View style={{ flexDirection: "row", gap: 10 }}>
             <MaterialIcons name="logout" size={24} color="red" />
               <Text style={styles.txtBotao}>Sair</Text>

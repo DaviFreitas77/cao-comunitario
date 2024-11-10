@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class idade extends Model
+class Idade extends Model
 {
     protected $table = 'tb_idade';
 
