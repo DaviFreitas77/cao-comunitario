@@ -1,6 +1,6 @@
 // App.js
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -8,19 +8,21 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import Entypo from '@expo/vector-icons/Entypo';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
+import { Context } from '../../contexto/provider';
 
 const PerfilUser = () => {
+  const {nomeUser,emailUser,imagemUser} = useContext(Context)
   const navigation = useNavigation(); 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require("../../imagens/inicioUser/user.png")}
+          source={{uri:imagemUser}}
           style={styles.imgPerfil}
         />
         <View >
-          <Text style={styles.nome}>Davi Freitas</Text>
-          <Text style={styles.email}>davifreitas@gmail.com</Text>
+          <Text style={styles.nome}>{nomeUser}</Text>
+          <Text style={styles.email}>{emailUser}</Text>
         </View>
 
       </View>

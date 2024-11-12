@@ -15,8 +15,14 @@ class usuarioController extends Controller
         $usuario->email_usuario = $request->email_usuario;
         $usuario->senha_usuario = $request->senha_usuario;
         $usuario->numero_usuario = $request->telefone_usuario;
+        $usuario->imagem_usuario = $request->imagem_usuario;
 
         $usuario->save();
+
+        return response()->json([
+            'message' =>'usuario cadastrado'
+        ],200);
+
     }
 
     public function login(Request $request)
@@ -34,7 +40,8 @@ class usuarioController extends Controller
 
         if($usuario && $request->senha === $usuario->senha_usuario){
             return response()->json([
-                    'message' => 'Login como usuário bem-sucedido.'
+                    'message' => 'Login como usuário bem-sucedido.',
+                    $usuario
             ],200);
         }
 

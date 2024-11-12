@@ -3,20 +3,12 @@ import { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import AppLoading from 'expo-app-loading';
-import {
-    useFonts,
-    Poppins_400Regular,
-    Poppins_700Bold,
-} from '@expo-google-fonts/poppins';
 import { Context } from '../../contexto/provider';
+import AppLoading from 'expo-app-loading';
 
-export default function SignIn() {
+export default function SignUp() {
     const navigation = useNavigation(); 
-    let [fontsLoaded] = useFonts({
-        Poppins_400Regular,
-        Poppins_700Bold,
-    });
+    
 
     const [numero, setNumero] = useState('');
     const [nome, setNome] = useState('');
@@ -24,9 +16,33 @@ export default function SignIn() {
     const [senha, setSenha] = useState('');
     const {urlApi} = useContext(Context)
 
-    if (!fontsLoaded) {
-        return <AppLoading />;
+   
+
+
+
+    const cadastrar = async () => {
+        try {
+            const response = await fetch(`${urlApi}/api/cadastroUsuario`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', 
+                },
+                body: JSON.stringify({ 
+                    nome_usuario: nome,
+                    email_usuario: email,
+                    senha_usuario: senha,
+                    telefone_usuario: numero,
+                    imagem_usuario: 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/usuario%2Ffoto.jpg?alt=media&token=9a11cf8b-5188-4d54-a30c-38e1d67b7696',
+                })
+            });
+    
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.log(error);
+        }
     }
+    
 
     return (
         <KeyboardAvoidingView
@@ -73,7 +89,9 @@ export default function SignIn() {
                             keyboardType='number-pad'
                         />
 
-                        <TouchableOpacity style={styles.botao}>
+                        <TouchableOpacity
+                        onPress={cadastrar}
+                        style={styles.botao}>
                             <Text style={{ fontWeight: 'bold', fontSize: 16 }}>
                                 Cadastrar
                             </Text>

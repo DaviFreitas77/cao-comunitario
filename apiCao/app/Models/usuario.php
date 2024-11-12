@@ -8,7 +8,7 @@ class Usuario extends Model
 {
     protected $table = 'tb_usuario';
 
-    protected $fillable = ['nome_usuario','email_usuario','senha_usuario','numero_usuario'];
+    protected $fillable = ['nome_usuario','email_usuario','senha_usuario','numero_usuario,imagem_usuario'];
     
     public $timestamps = false;
 }

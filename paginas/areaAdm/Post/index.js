@@ -8,7 +8,7 @@ import * as ImagePicker from 'expo-image-picker';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { storage } from '../../../service/conexaoFirebase';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
-import ModalPetCadastrado from '../../../Componentes/ModalPetCadastrado';
+import ModalPetCadastrado from '../../../Componentes/Modal/index'
 const Post = () => {
     const { urlApi } = useContext(Context)
     const [image, setImage] = useState('');

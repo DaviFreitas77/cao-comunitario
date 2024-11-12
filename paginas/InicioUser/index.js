@@ -7,16 +7,17 @@ import { Context } from '../../contexto/provider';
 import Header from '../../Componentes/Header';
 
 export default function InicioUser() {
-  
+    const {nomeUser,imagemUser} = useContext(Context)
+    console.log(imagemUser)
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
                 <View>
                     <Text style={{ fontSize: 18, color: 'gray' }}>Olá,</Text>
-                    <Text style={{ fontSize: 22 }}>Davi</Text>
+                    <Text style={{ fontSize: 22 }}>{nomeUser}</Text>
                 </View>
                 <Image
-                    source={require("../../imagens/inicioUser/user.png")}
+                    source={{uri:imagemUser}}
                     style={styles.imgPerfil}
                 />
             </View>
