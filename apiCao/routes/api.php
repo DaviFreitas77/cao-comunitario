@@ -26,3 +26,6 @@ Route::post('/cadastroUsuario',[usuarioController::class,('store')]);
 Route::post('/login',[usuarioController::class,('login')]);
 
 Route::post('/cadastroPet',[CadastroPetController::class,('store')]);
+
+
+Route::post('/atualizar',[usuarioController::class,('update')]);

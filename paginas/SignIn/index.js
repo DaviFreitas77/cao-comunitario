@@ -9,12 +9,12 @@ import axios from 'axios';
 
 export default function SignIn() {
     const navigation = useNavigation(); 
-    const {setAdm,adm,setUrlApi,urlApi,setNomeUser,setEmailUser,setNumeroUser,setImagemUser} = useContext(Context)
+    const {setAdm,adm,setUrlApi,urlApi,setNomeUser,setEmailUser,setNumeroUser,setImagemUser,setIdUser} = useContext(Context)
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
     useEffect(()=>{
-        setUrlApi('https://d2bb-2804-7f0-b900-d02a-8944-688d-26b3-3715.ngrok-free.app');
+        setUrlApi('https://d3e7-2804-7f0-b900-d02a-4c2b-1a46-aa54-5f3d.ngrok-free.app');
     },[urlApi])
 
 
@@ -35,6 +35,7 @@ export default function SignIn() {
                setAdm(true)
             }else if(data.message === 'Login como usuário bem-sucedido.'){
                 navigation.replace('InicioUser')
+                setIdUser(data['0'].id_usuario)
                 setNomeUser(data['0'].nome_usuario)
                 setEmailUser(data['0'].email_usuario)
                 setNumeroUser(data['0'].numero_usuario)

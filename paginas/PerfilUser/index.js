@@ -45,7 +45,9 @@ const PerfilUser = () => {
             </View>
             <AntDesign name="arrowright" size={24} color="#dfdfdf" />
           </Pressable>
-          <Pressable style={styles.botao}>
+          <Pressable 
+          onPress={()=>navigation.navigate('Sobre')}
+          style={styles.botao}>
             <View style={{ flexDirection: "row", gap: 10 }}>
             <AntDesign name="exclamationcircle" size={24} color="black" />
               <Text style={styles.txtBotao}>Sobre nós</Text>

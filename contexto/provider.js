@@ -10,10 +10,11 @@ export default function Provider ({children}){
     const [emailUser,setEmailUser] = useState("")
     const [numeroUser,setNumeroUser] = useState("")
     const [imagemUser,setImagemUser] = useState("")
+    const [idUser,setIdUser] = useState("")
 
 
     return(
-        <Context.Provider value={{adm,setAdm,setUrlApi,urlApi,nomeUser,setNomeUser,emailUser,setEmailUser,setNumeroUser,numeroUser,setImagemUser,imagemUser}}>
+        <Context.Provider value={{adm,setAdm,setUrlApi,urlApi,nomeUser,setNomeUser,emailUser,setEmailUser,setNumeroUser,numeroUser,setImagemUser,imagemUser,setIdUser,idUser}}>
             {children}        
         </Context.Provider>
     )

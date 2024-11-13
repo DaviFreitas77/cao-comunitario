@@ -9,7 +9,7 @@ const Sobre = () => {
       <Image 
         source={require('../../imagens/login/sobre.png')}
         style={styles.img}
-        resizeMode="contain" // Ajusta a imagem para caber no contêiner
+        resizeMode="contain" 
       />
     </View>
   );

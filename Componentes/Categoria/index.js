@@ -28,7 +28,7 @@ const Categoria = () => {
     useEffect(() => {
         const fetchPets = async () => {
             try {
-                const response = await fetch(`${urlApi}/api/`, {
+                const response = await fetch(`${urlApi}/api/pets`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
