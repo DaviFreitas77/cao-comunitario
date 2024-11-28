@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('tb_admin', function (Blueprint $table) {
             $table->increments('id_admin');
             $table->string('email_admin');
-            $table->string('senha_usuario');
+            $table->string('senha_admin');
+            $table->string('imagem_admin');
+            $table->string('numero_admin');
         });
     }
 

@@ -7,7 +7,7 @@ import { Context } from '../../../contexto/provider';
 import Header from '../../../Componentes/Header';
 
 export default function InicioAdm() {
-
+const {imagemAdm} = useContext(Context)
 
     return (
         <ScrollView style={styles.container}>
@@ -17,7 +17,7 @@ export default function InicioAdm() {
                     <Text style={{ fontSize: 22 }}>administrador</Text>
                 </View>
                 <Image
-                    source={require("../../../imagens/inicioUser/user.png")}
+                    source={{uri:imagemAdm}}
                     style={styles.imgPerfil}
                 />
             </View>

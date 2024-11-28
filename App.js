@@ -1,31 +1,39 @@
-import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { TouchableOpacity } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { NavigationContainer } from '@react-navigation/native';
+
+
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 
-import Provider from './contexto/provider';
+import Provider from './src/contexto/provider';
 
-//usuario pagina
-import Start from './paginas/Start';
-import SignIn from './paginas/SignIn';
-import SignUp from './paginas/SignUp';
-import InicioUser from './paginas/InicioUser';
-import Favorito from './paginas/favoritos';
-import PerfilUser from './paginas/PerfilUser';
-import EditarPerfil from './paginas/PerfilUser/editar';
-import Sobre from './Componentes/Sobre';
-import PetInfo from './Componentes/PetInfo';
-//ADM pagina
-import InicioAdm from './paginas/areaAdm/InicioAdm';
-import PerfilAdm from './paginas/areaAdm/perfilAdm';
-import EditarPerfilAdm from './paginas/areaAdm/perfilAdm/editar';
-import Post from './paginas/areaAdm/Post';
-
+import Start from './src/pages/Start';
+import SignIn from './src/pages/SignIn';
+import SignUp from './src/pages/SignUp';
+import InicioUser from './src/pages/InicioUser';
+import PetInfo from './src/componentes/PetInfo';
+import PerfilUser from './src/pages/PerfilUser';
+import Favorito from './src/pages/favoritos';
+import EditarPerfil from './src/pages/PerfilUser/editar';
+import Sobre from './src/componentes/Sobre';
+import Doacao from './src/pages/Doacao';
+//adm
+import InicioAdm from './src/pages/areaAdm/InicioAdm';
+import Post from './src/pages/areaAdm/Post';
+import PerfilAdm from './src/pages/areaAdm/PerfilAdm';
+import EditarPerfilAdm from './src/pages/areaAdm/PerfilAdm/editar';
+import TipoAnimal from './src/pages/areaAdm/Post/tipoAnimal';
+import IdadePet from './src/pages/areaAdm/Post/idadePet';
+import RacaPet from './src/pages/areaAdm/Post/racaPet';
+import CuidadoPet from './src/pages/areaAdm/Post/cuidadoPet';
+import TemperamentoPet from './src/pages/areaAdm/Post/temperamentoPet';
+import ImagemPet from './src/pages/areaAdm/Post/imagemPet';
+import SobrePet from './src/pages/areaAdm/Post/sobrePet';
 
 function TabNavigator() {
   return (
@@ -59,6 +67,7 @@ function TabNavigator() {
           <Feather name="user" size={26} color="black" />
         ),
       }} />
+
 
 
     </Tab.Navigator>
@@ -106,45 +115,42 @@ function TabAdm() {
 function MyStack() {
   return (
     <Provider>
-      <Stack.Navigator initialRouteName='Start'>
+     <Stack.Navigator initialRouteName='Start'>
         <Stack.Screen name="Start" component={Start} options={{ headerShown: false }} />
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
         <Stack.Screen name="InicioUser" component={TabNavigator} options={{ headerShown: false }} />
-        <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{
-          headerShown: true, headerTitle: "Meu perfil", headerTitleAlign: 'center',
-          
-        }} />
-       
+        <Stack.Screen name="PetInfo" component={PetInfo} options={{ headerShown: false }} />
+        <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{ headerShown: false }} />
+        <Stack.Screen name="EditarPerfilAdm" component={EditarPerfilAdm} options={{ headerShown: false }} />
         <Stack.Screen name="Sobre" component={Sobre} options={{
           headerShown: true, headerTitle: "Sobre nós", headerTitleAlign: 'center',
-          headerStyle:{
+          headerStyle: {
             backgroundColor: '#ccf3dc',
-            
+
           }
         }} />
-        <Stack.Screen name="PetInfo" component={PetInfo} options={{ headerShown: false }} />
-       
 
-        {/* ADM PAGINA */}
-        <Stack.Screen name="InicioAdm" component={TabAdm} options={{
-          headerShown: false
+        <Stack.Screen name="InicioAdm" component={TabAdm} options={{ headerShown: false }} />
+        <Stack.Screen name="tipoAnimal" component={TipoAnimal} options={{ headerShown: false }} />
+        <Stack.Screen name="IdadePet" component={IdadePet} options={{ headerShown: false }} />
+        <Stack.Screen name="RacaPet" component={RacaPet} options={{ headerShown: false }} />
+        <Stack.Screen name="CuidadoPet" component={CuidadoPet} options={{ headerShown: false }} />
+        <Stack.Screen name="TemperamentoPet" component={TemperamentoPet} options={{ headerShown: false }} />
+        <Stack.Screen name="ImagemPet" component={ImagemPet} options={{ headerShown: false }} />
+        <Stack.Screen name="SobrePet" component={SobrePet} options={{ headerShown: false }} />
+        <Stack.Screen name="Doacao" component={Doacao} options={{
+          headerShown: true, headerTitle: "Ajude o projeto", headerTitleAlign: 'center',
+          headerStyle: {
+            backgroundColor: '#ccf3dc',
 
-        }} />
-        <Stack.Screen name="EditarPerfilAdm" component={EditarPerfilAdm} options={{
-          headerShown: false
-
-        }} />
-        <Stack.Screen name="Post" component={Post} options={{
-          headerShown: false
-
-        }} />
-       
+          }
+        }}/>
       </Stack.Navigator>
     </Provider>
-  );
-}
 
+  )
+}
 
 export default function App() {
   return (

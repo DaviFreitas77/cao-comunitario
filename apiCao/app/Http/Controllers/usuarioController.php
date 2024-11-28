@@ -31,7 +31,8 @@ class usuarioController extends Controller
 
         if ($admin && $request->senha === $admin->senha_admin) {
             return response()->json([
-                'message' => 'Login como administrador bem-sucedido'
+                'message' => 'Login como administrador bem-sucedido',
+                $admin
             ], 200);
         }
 
@@ -51,32 +52,48 @@ class usuarioController extends Controller
 
     public function update(Request $request)
     {
-        $idUsuario =$request-> id;
+        $idUsuario = $request->id;
+        $idAdm = $request->idAdm;
         $usuario = Usuario::find($idUsuario);
+        $admin = Admin::find($idAdm);
     
-        if (!$usuario) {
-            return response()->json(['mensagem' => 'Usuário não encontrado.'], 404);
+        if (!$usuario && !$admin) {
+            return response()->json(['mensagem' => 'Usuário ou administrador não encontrado.'], 404);
         }
     
         $atualizado = false;
     
-        if (!is_null($request->novoNome)) {
-            $usuario->nome_usuario = $request->novoNome;
-            $atualizado = true;
+        if ($usuario) {
+            if (!is_null($request->novoNome)) {
+                $usuario->nome_usuario = $request->novoNome;
+                $atualizado = true;
+            }
+    
+            if (!is_null($request->novoNumero)) {
+                $usuario->numero_usuario = $request->novoNumero;
+                $atualizado = true;
+            }
+    
+            if (!is_null($request->urlImagem)) {
+                $usuario->imagem_usuario = $request->urlImagem;
+                $atualizado = true;
+            }
+    
+            if ($atualizado) {
+                $usuario->save();
+            }
         }
     
-        if (!is_null($request->novoNumero)) {
-            $usuario->numero_usuario = $request->novoNumero;
-            $atualizado = true;
+        if ($admin) {
+            if (!is_null($request->urlImagem)) {
+                $admin->imagem_admin = $request->urlImagem;
+                $admin->save();
+                $atualizado = true;
+            }
         }
     
-        if(!is_null($request->urlImagem)){
-            $usuario->imagem_usuario = $request->urlImagem;
-            $atualizado = true;
-        }
         if ($atualizado) {
-            $usuario->save();
-            return response()->json(['mensagem' => 'Usuário atualizado com sucesso.'], 200);
+            return response()->json(['mensagem' => 'Atualização realizada com sucesso.'], 200);
         } else {
             return response()->json(['mensagem' => 'Nenhuma atualização realizada.'], 400);
         }

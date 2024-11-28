@@ -1,34 +1,26 @@
 // App.js
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View,Image,TextInput, Pressable} from 'react-native';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import EditImage from '../../../Componentes/EditFoto';
+import { Context } from '../../../contexto/provider';
 const EditarPerfilAdm = () => {
+  const {imagemAdm,emailAdm,numeroAdm} = useContext(Context)
   return (
     <View style={styles.container}>
-        <View>
-            <Image 
-              source={require("../../../imagens/inicioUser/user.png")}
-                style={styles.imgPerfil}
-            />
-            <View style={styles.iconCamera}>
-                <MaterialCommunityIcons name="camera-plus" size={20} color="black" />
-            </View>
-        </View>
+      <EditImage/>
         <View style={styles.containerInputs}>
-            <Pressable style={styles.inputNome}>
-                <Text style={styles.tituloInput}>Nome e sobrenome</Text>
-                <Text> adm </Text>
-            </Pressable>
+           
 
             <Pressable style={styles.inputNome}>
                 <Text style={styles.tituloInput}>Email</Text>
-                <Text style={{color:"gray"}}>adm</Text>
+                <Text style={{color:"gray"}}>{emailAdm}</Text>
             </Pressable>
 
             <Pressable style={styles.inputNome}>
                 <Text style={styles.tituloInput}>Celular</Text>
-                <Text> (11) 95204-1574 </Text>
+                <Text> {numeroAdm} </Text>
             </Pressable>
         </View>
         <Pressable style={styles.btnAtualizar}>

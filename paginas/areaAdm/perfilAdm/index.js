@@ -11,18 +11,18 @@ import { useNavigation } from '@react-navigation/native';
 import { Context } from '../../../contexto/provider';
 
 const PerfilAdm = () => {
-  const {setAdm} = useContext(Context)
+  const {setAdm,imagemAdm,emailAdm,numeroAdmin} = useContext(Context)
   const navigation = useNavigation(); 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={require("../../../imagens/inicioUser/user.png")}
+          source={{uri:imagemAdm}}
           style={styles.imgPerfil}
         />
         <View >
           <Text style={styles.nome}>administrador</Text>
-          <Text style={styles.email}>davifreitas@gmail.com</Text>
+          <Text style={styles.email}>{emailAdm}</Text>
         </View>
 
       </View>

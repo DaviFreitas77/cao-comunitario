@@ -1,39 +1,43 @@
 import { StatusBar } from 'expo-status-bar';
 import { useContext, useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput,TouchableOpacity,Image } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, KeyboardAvoidingView, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Context } from '../../contexto/provider';
-import axios from 'axios';
+
 ;
 
 export default function SignIn() {
-    const navigation = useNavigation(); 
-    const {setAdm,adm,setUrlApi,urlApi,setNomeUser,setEmailUser,setNumeroUser,setImagemUser,setIdUser} = useContext(Context)
+    const navigation = useNavigation();
+    const { setAdm, adm, setUrlApi, urlApi, setNomeUser, setEmailUser, setNumeroUser, setImagemUser, setIdUser, setIdAdm, setEmailAdm, setImagemAdm, setNumeroAdm } = useContext(Context)
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
 
-    useEffect(()=>{
-        setUrlApi('https://d3e7-2804-7f0-b900-d02a-4c2b-1a46-aa54-5f3d.ngrok-free.app');
-    },[urlApi])
+    useEffect(() => {
+        setUrlApi('https://40ea-2804-7f0-b900-d02a-43b-da04-7828-78f4.ngrok-free.app');
+    }, [urlApi])
 
 
-    const login = async() => {
-        try{
-            const response = await fetch(`${urlApi}/api/login`,{
-               method: "POST",
-               headers:{
-                'Content-Type':'application/json',
-               },
-               body:JSON.stringify({email:email,senha:senha})
+    const login = async () => {
+        try {
+            const response = await fetch(`${urlApi}/api/login`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email: email, senha: senha })
             })
 
             const data = await response.json();
 
-            if(data.message === 'Login como administrador bem-sucedido'){
-               navigation.replace('InicioAdm')
-               setAdm(true)
-            }else if(data.message === 'Login como usuário bem-sucedido.'){
+            if (data.message === 'Login como administrador bem-sucedido') {
+                navigation.replace('InicioAdm')
+                setAdm(true)
+                setIdAdm(data['0'].id_admin)
+                setEmailAdm(data['0'].email_admin)
+                setImagemAdm(data['0'].imagem_admin)
+                setNumeroAdm(data['0'].numero_admin)
+            } else if (data.message === 'Login como usuário bem-sucedido.') {
                 navigation.replace('InicioUser')
                 setIdUser(data['0'].id_usuario)
                 setNomeUser(data['0'].nome_usuario)
@@ -41,55 +45,60 @@ export default function SignIn() {
                 setNumeroUser(data['0'].numero_usuario)
                 setImagemUser(data['0'].imagem_usuario)
             }
-            
+
             console.log(data)
-        }catch(error){
+        } catch (error) {
             console.error('Erro:', error);
         }
-        
-        
+
+
     }
 
     return (
-        <View style={styles.container}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('Start')}
-            style={{width:"90%"}}>
-            <FontAwesome name="arrow-left" size={24} color="black" />
-            </TouchableOpacity>
-            <Image
-                source={require('../../imagens/login/dog.png')}
-                style={styles.imgDog}
-            />
-            <View style={styles.containerLogin}>
-            <Image
-                    source={require('../../imagens/login/comunitario.png')}
-                    style={styles.logo}
-                />
-
-                <View style={{width:"100%",alignItems:"center",gap:15}}>
-                    <TextInput
-                        placeholder='Digite seu email'
-                        onChangeText={(text) => setEmail(text)}
-                        style={styles.input}
-                    />
-                    <TextInput
-                        placeholder='Digite sua senha'
-                        onChangeText={(text) => setSenha(text)}
-                        style={styles.input}
-                    />
-                </View>
-
-                <TouchableOpacity 
-                onPress={login}
-                style={styles.botao}>
-                    <Text style={{fontWeight:'bold',fontSize:16}}>
-                        Entrar
-                    </Text>
+        <KeyboardAvoidingView style={styles.container}>
+            <ScrollView contentContainerStyle={styles.scrollContainer} 
+            keyboardShouldPersistTaps="handled"
+            >
+                <TouchableOpacity
+                    onPress={() => navigation.navigate('Start')}
+                    style={{ width: "90%" }}>
+                    <FontAwesome name="arrow-left" size={24} color="black" />
                 </TouchableOpacity>
-            </View>
+                <Image
+                    source={require('../../imagens/login/dog.png')}
+                    style={styles.imgDog}
+                />
+                <View style={styles.containerLogin}>
+                    <Image
+                        source={require('../../imagens/login/comunitario.png')}
+                        style={styles.logo}
+                    />
+
+                    <View style={{ width: "100%", alignItems: "center", gap: 15 }}>
+                        <TextInput
+                            placeholder='Digite seu email'
+                            onChangeText={(text) => setEmail(text)}
+                            style={styles.input}
+                        />
+                        <TextInput
+                            placeholder='Digite sua senha'
+                            onChangeText={(text) => setSenha(text)}
+                            style={styles.input}
+                        />
+                    </View>
+
+                    <TouchableOpacity
+                        onPress={login}
+                        style={styles.botao}>
+                        <Text style={{ fontWeight: 'bold', fontSize: 16 }}>
+                            Entrar
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+            </ScrollView>
+
             <StatusBar style="auto" />
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 
@@ -97,12 +106,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#ccf3dc',
-        alignItems: 'center',
+        
         justifyContent: 'flex-end',
     },
     containerLogin: {
         backgroundColor: "#fff",
-        height:'50%',
+        height: '50%',
         width: '100%',
         borderTopLeftRadius: 50,
         borderTopRightRadius: 50,
@@ -119,23 +128,28 @@ const styles = StyleSheet.create({
     },
     titulo: {
         fontFamily: 'Poppins_400Regular',
-        fontSize: 24, 
-        fontWeight: 'bold' 
+        fontSize: 24,
+        fontWeight: 'bold'
     },
-    botao:{
-        backgroundColor:'#ccf3dc',
-        padding:20,
-        width:'80%',
-        alignItems:"center",
-        borderRadius:5
+    botao: {
+        backgroundColor: '#ccf3dc',
+        padding: 20,
+        width: '80%',
+        alignItems: "center",
+        borderRadius: 5
     },
-    imgDog:{
-       
-        width: 300, 
-        zIndex: 1, 
+    imgDog: {
+
+        width: 300,
+        zIndex: 1,
     },
     logo: {
         width: 310,
-         height: 120
+        height: 120
+    },
+    scrollContainer: {
+        flexGrow: 1,
+        alignItems: 'center',
+        justifyContent: 'flex-end',
     },
 });

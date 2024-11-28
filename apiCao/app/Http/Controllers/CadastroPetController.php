@@ -14,15 +14,17 @@ class CadastroPetController extends Controller
     public function index()
     {
         $pets = CadastroPet::select(
-          'tb_pet.nome_pet',
-        'tb_pet.tipo_pet',
-        'tb_pet.genero_pet',
-        'tb_pet.idade_pet',
-        'tb_pet.raca_pet',
-        'tb_pet.imagem_pet',
-        'tb_genero.desc_genero',
-        'tb_idade.desc_idade',
-        'tb_tipo.desc_tipo_pet',
+            'tb_pet.id_pet',
+            'tb_pet.nome_pet',
+            'tb_pet.tipo_pet',
+            'tb_pet.genero_pet',
+            'tb_pet.idade_pet',
+            'tb_pet.raca_pet',
+            'tb_pet.imagem_pet',
+            'tb_pet.sobre_pet',
+            'tb_genero.desc_genero',
+            'tb_idade.desc_idade',
+            'tb_tipo.desc_tipo_pet',
             DB::raw("GROUP_CONCAT(DISTINCT tb_temperamento.desc_temperamento SEPARATOR ', ') AS temperamentos"),
             DB::raw("GROUP_CONCAT(DISTINCT tb_cuidado.desc_cuidado SEPARATOR ', ') AS cuidados")
         )
@@ -33,10 +35,10 @@ class CadastroPetController extends Controller
             ->join('tb_genero', 'tb_pet.genero_pet', '=', 'tb_genero.id_genero')
             ->join('tb_idade', 'tb_pet.idade_pet', '=', 'tb_idade.id_idade')
             ->join('tb_tipo', 'tb_pet.tipo_pet', '=', 'tb_tipo.id_tipo')
-            ->groupBy('tb_pet.id_pet', 'tb_pet.nome_pet', 'tb_pet.genero_pet', 'tb_genero.desc_genero', 'tb_pet.idade_pet', 'tb_idade.desc_idade', 'tb_pet.raca_pet', 'tb_pet.tipo_pet', 'tb_tipo.desc_tipo_pet', 'tb_pet.imagem_pet')
+            ->groupBy('tb_pet.id_pet', 'tb_pet.nome_pet', 'tb_pet.genero_pet', 'tb_genero.desc_genero', 'tb_pet.idade_pet', 'tb_idade.desc_idade', 'tb_pet.raca_pet', 'tb_pet.tipo_pet', 'tb_tipo.desc_tipo_pet', 'tb_pet.imagem_pet', 'tb_pet.sobre_pet' )
             ->get();;
 
-           
+
 
         return response()->json($pets);
     }
@@ -51,6 +53,7 @@ class CadastroPetController extends Controller
         $pet->genero_pet = $request->generoPet;
         $pet->raca_pet = $request->racaPet;
         $pet->imagem_pet = $request->imagemPet;
+        $pet->sobre_pet = $request->sobrePet;;
         $temperamento = is_array($request->temperamentoPet) ? $request->temperamentoPet : json_decode($request->temperamentoPet);
 
         $cuidado = is_array($request->cuidadoPet) ? $request->cuidadoPet : json_decode($request->cuidadoPet);

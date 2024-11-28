@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('idade_pet');
             $table->string('raca_pet');
             $table->string('imagem_Pet');
+            $table->string('sobre_pet');
 
             $table->foreign('tipo_pet')->references('id_tipo')->on('tb_tipo');
             $table->foreign('genero_pet')->references('id_genero')->on('tb_genero');

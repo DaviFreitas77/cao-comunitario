@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView,
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Context } from '../../contexto/provider';
-import AppLoading from 'expo-app-loading';
+
 
 export default function SignUp() {
     const navigation = useNavigation(); 
@@ -38,6 +38,7 @@ export default function SignUp() {
     
             const data = await response.json();
             console.log(data);
+            navigation.navigate('SignIn')
         } catch (error) {
             console.log(error);
         }

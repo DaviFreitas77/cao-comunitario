@@ -68,14 +68,14 @@ const PetInfo = () => {
           </View>
           <View style={styles.cuidadosContainer}>
             <Text style={{ fontSize: 16, textAlign: 'justify' }}>
-              Um cachorro dócil é aquele cuja personalidade reflete gentileza, paciência e afeto natural, tornando-o um excelente companheiro tanto para indivíduos quanto para famílias. Dócil por natureza, esse cão é geralmente amigável com todos ao seu redor, incluindo crianças, outros animais e até estranhos. Sua tranquilidade e disposição para receber carinhos, junto com uma natureza obediente, tornam o cachorro dócil um amigo confiável em qualquer ambiente.
-
-              Esse tipo de cachorro se adapta bem a novos ambientes e pessoas, respondendo a comandos com facilidade e tendendo a ser fácil de treinar. Ele demonstra paciência, o que é especialmente importante em lares com crianças pequenas, que muitas vezes desejam brincar e interagir mais ativamente com os pets. Esse cão raramente exibe agressividade e, em vez disso, responde com calma mesmo em situações desconhecidas ou estressantes, reforçando sua natureza amável e acolhedora.
+              
             </Text>
           </View>
 
           <View style={styles.containerBtn}>
-            <Pressable style={styles.btn}>
+            <Pressable
+            onPress={()=>alert("ainda não adota :(,arrumar pra ontem")}
+            style={styles.btn}>
               <Text style={styles.txtBtn}>
                 {adm ? 'Pet adotado?' : 'Quero adotar'}
               </Text>
