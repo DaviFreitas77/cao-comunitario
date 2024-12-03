@@ -36,7 +36,8 @@ class CadastroPetController extends Controller
             ->join('tb_idade', 'tb_pet.idade_pet', '=', 'tb_idade.id_idade')
             ->join('tb_tipo', 'tb_pet.tipo_pet', '=', 'tb_tipo.id_tipo')
             ->groupBy('tb_pet.id_pet', 'tb_pet.nome_pet', 'tb_pet.genero_pet', 'tb_genero.desc_genero', 'tb_pet.idade_pet', 'tb_idade.desc_idade', 'tb_pet.raca_pet', 'tb_pet.tipo_pet', 'tb_tipo.desc_tipo_pet', 'tb_pet.imagem_pet', 'tb_pet.sobre_pet' )
-            ->get();;
+            ->orderBy('tb_pet.id_pet', 'desc') // Ordena pela coluna 'id_pet' de forma decrescente
+            ->get();
 
 
 

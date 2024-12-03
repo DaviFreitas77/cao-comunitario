@@ -19,10 +19,7 @@ const ImagemPet = () => {
 
 
 
-  
-    const fecharModal = () => {
-        setModalVisible(false);
-    };
+ 
  
     const pickImage = async () => {
 

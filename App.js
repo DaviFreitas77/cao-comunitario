@@ -22,6 +22,7 @@ import Favorito from './src/pages/favoritos';
 import EditarPerfil from './src/pages/PerfilUser/editar';
 import Sobre from './src/componentes/Sobre';
 import Doacao from './src/pages/Doacao';
+import TodosPets from './src/pages/TodosPets';
 //adm
 import InicioAdm from './src/pages/areaAdm/InicioAdm';
 import Post from './src/pages/areaAdm/Post';
@@ -53,7 +54,14 @@ function TabNavigator() {
       }} />
 
       <Tab.Screen name='Favorito' component={Favorito} options={{
-        headerShown: false,
+        headerShown: true,
+          headerTitle:"Favoritos",
+          headerTitleAlign:'center',
+          headerStyle: {
+            backgroundColor: '#ccf3dc',
+           
+          },
+        
         tabBarLabel: () => null,
         tabBarIcon: ({ color, size }) => (
           <Feather name="heart" size={26} color="black" />
@@ -122,6 +130,16 @@ function MyStack() {
         <Stack.Screen name="InicioUser" component={TabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="PetInfo" component={PetInfo} options={{ headerShown: false }} />
         <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{ headerShown: false }} />
+        <Stack.Screen name="TodosPets" component={TodosPets} options={{ headerShown: true ,
+        headerTitle:"Todos Pets",
+        headerTitleAlign:'center',
+          headerStyle:{
+            backgroundColor: '#ccf3dc',
+
+          }
+        }} />
+
+
         <Stack.Screen name="EditarPerfilAdm" component={EditarPerfilAdm} options={{ headerShown: false }} />
         <Stack.Screen name="Sobre" component={Sobre} options={{
           headerShown: true, headerTitle: "Sobre nós", headerTitleAlign: 'center',

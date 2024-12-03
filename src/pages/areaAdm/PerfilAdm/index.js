@@ -16,8 +16,8 @@ const PerfilAdm = () => {
   const navigation = useNavigation(); 
 
   const openGmail=()=>{
-    const email = "freitaadavi@gmail.com"; 
-    const subject = "Assunto da Doação"; 
+    const email = "dfreitas.developer@gmail.com"; 
+    const subject = "Aplicativo Cão comunitário"; 
     const body = "Olá,"; 
     const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     

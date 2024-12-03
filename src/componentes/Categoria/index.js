@@ -28,29 +28,29 @@ const Categoria = () => {
     useEffect(() => {
         const fetchPets = async () => {
             try {
-                const response = await fetch(`${urlApi}/api/`, {
+                const response = await fetch(`${urlApi}/api/pets`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     }
                 });
                 const data = await response.json();
-              console.log(data)
+                console.log(data)
                 setPets(data);
             } catch (error) {
                 console.log(error);
             }
         };
         fetchPets();
-    }, [pets]);
+    }, []);
 
 
     const renderItem = ({ item }) => {
         return (
-            <Pressable  
+            <Pressable
 
-            onPress={() => navigation.navigate('PetInfo', { pet: item })}
-            style={styles.card}>
+                onPress={() => navigation.navigate('PetInfo', { pet: item })}
+                style={styles.card}>
                 <Image
                     source={{ uri: item.imagem_pet }}
                     style={styles.imgPet}
@@ -89,6 +89,16 @@ const Categoria = () => {
                         />
                         <Text>Gato</Text>
                     </Pressable>
+
+                    <Pressable
+                        onPress={()=>navigation.navigate('TodosPets')}
+                        style={[styles.botaoFiltro]}>
+                        <Image
+                            source={require("../../imagens/inicioUser/todos.jpg")}
+                            style={styles.imgBotaoFiltro}
+                        />
+                        <Text>Todos</Text>
+                    </Pressable>
                 </View>
             </View>
 
@@ -99,6 +109,7 @@ const Categoria = () => {
                 horizontal={true}
                 showsHorizontalScrollIndicator={false}
             />
+           
         </View>
 
     );
@@ -128,7 +139,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         width: '100%',
-        paddingHorizontal: 20,
+        gap:10
     },
     botaoFiltro: {
         backgroundColor: "#dfdfdfdf",
@@ -153,7 +164,7 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         alignItems: "center",
         marginTop: 20,
-        marginBottom: 80
+        marginBottom: 80,
 
 
     },
@@ -173,7 +184,6 @@ const styles = StyleSheet.create({
         marginTop: 2,
     },
     descPet: {
-
         width: "100%"
     }
 

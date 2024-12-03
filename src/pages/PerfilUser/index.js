@@ -1,7 +1,7 @@
 // App.js
 
 import React, { useContext } from 'react';
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable,Linking} from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -11,6 +11,19 @@ import { useNavigation } from '@react-navigation/native';
 import { Context } from '../../contexto/provider';
 
 const PerfilUser = () => {
+
+  
+  const openGmail=()=>{
+    const email = "dfreitas.developer@gmail.com"; 
+    const subject = "Aplicativo Cão comunitário"; 
+    const body = "Olá,"; 
+    const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    Linking.openURL(mailtoUrl).catch(()=>{
+      alert( "O Gmail não está instalado ou não pode ser aberto no momento.")
+    })
+  }
+
   const {nomeUser,emailUser,imagemUser} = useContext(Context)
   const navigation = useNavigation(); 
   return (
@@ -66,7 +79,9 @@ const PerfilUser = () => {
         </View>
 
         <View style={styles.containerBotao}>
-          <Pressable style={styles.botao}>
+          <Pressable style={styles.botao}
+          onPress={openGmail}
+          >
             <View style={{ flexDirection: "row", gap: 10 }}>
             <Entypo name="message" size={24} color="black" />
               <Text style={styles.txtBotao}>Nos ajude a melhorar</Text>
