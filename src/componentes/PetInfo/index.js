@@ -15,8 +15,7 @@ const PetInfo = () => {
   const cuidadosArray = pet.cuidados.split(', ');
   const temperamentosArray = pet.temperamentos.split(', ');
 
-  console.log(idUser)
-  console.log(pet.id_pet)
+  
 
 
   useEffect(() => {

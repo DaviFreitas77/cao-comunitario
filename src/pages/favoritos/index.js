@@ -6,20 +6,21 @@ import {
   FlatList,
   Image,
   Pressable,
-  ActivityIndicator
 } from 'react-native';
 import { Context } from '../../contexto/provider';
 import { useNavigation } from '@react-navigation/native';
 import { useFocusEffect } from '@react-navigation/native';
-
+import ShimmerPlaceholder from 'react-native-shimmer-placeholder'; 
 const Favorito = () => {
   const navigation = useNavigation();
   const { urlApi, idUser } = useContext(Context);
   const [pets, setPets] = useState([]);
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
+  const [countPlaceholder,setCountPlaceholder] = useState(3)
+
   useFocusEffect(
     React.useCallback(() => {
-      setLoading(true)
+      setLoading(true);
       const dataFavoritos = async () => {
         try {
           const response = await fetch(
@@ -33,24 +34,21 @@ const Favorito = () => {
           );
 
           const data = await response.json();
+          setCountPlaceholder(data.length)
           setPets(data);
-         
         } catch (error) {
           console.log(error);
-        }finally{
-
-         setLoading(false)
+        } finally {
+          setLoading(false);
         }
-        
       };
 
       dataFavoritos();
-    }, [idUser, urlApi]) 
+    }, [idUser, urlApi])
   );
 
   const renderItem = ({ item }) => {
     return (
-      
       <Pressable
         onPress={() => navigation.navigate('PetInfo', { pet: item })}
         style={styles.card}>
@@ -66,22 +64,48 @@ const Favorito = () => {
     );
   };
 
+  const renderShimmerPlaceholder = () => {
+    return (
+      <View style={styles.card}>
+        <ShimmerPlaceholder
+        
+          style={styles.imgPet}
+          autoRun={true}
+          shimmerColor="rgba(255,255,255,0.7)" 
+        />
+        <View style={styles.descPet}>
+          <ShimmerPlaceholder
+            style={styles.shimmerText}
+            autoRun={true}
+          />
+          <ShimmerPlaceholder
+            style={styles.shimmerText}
+            autoRun={true}
+          />
+        </View>
+      </View>
+    );
+  };
+
   return (
     <View style={styles.container}>
-      {loading ?(
-        <View style={{flex:1,justifyContent:"center"}}>
-          <ActivityIndicator  size='large' color="blue"/>
-        </View>
-      ):(
+      {loading ? (
         <FlatList
-        data={pets}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id_pet}
-        numColumns={2} 
-        showsHorizontalScrollIndicator={false}
-      />
+          data={[...Array(countPlaceholder)]} 
+          renderItem={renderShimmerPlaceholder}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={2}
+          showsHorizontalScrollIndicator={false}
+        />
+      ) : (
+        <FlatList
+          data={pets}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id_pet}
+          numColumns={2}
+          showsHorizontalScrollIndicator={false}
+        />
       )}
-    
     </View>
   );
 };
@@ -90,23 +114,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-   
-    
   },
   card: {
     backgroundColor: '#dfdfdf',
     borderRadius: 10,
     padding: 15,
-    margin: 5, 
+    margin: 5,
     shadowColor: '#000',
     alignItems: 'center',
-    flex: 1, 
-    maxWidth: '45%', 
-    margin:10
+    flex: 1,
+    maxWidth: '45%',
+    margin: 10,
   },
   imgPet: {
-    width: '100%', 
-    height: 140, 
+    width: '100%',
+    height: 140,
     borderRadius: 10,
   },
   txtNome: {
@@ -120,6 +142,12 @@ const styles = StyleSheet.create({
   descPet: {
     width: '100%',
     marginTop: 10,
+  },
+  shimmerText: {
+    height: 20,
+    width: '80%',
+    marginTop: 10,
+    borderRadius: 4,
   },
 });
 

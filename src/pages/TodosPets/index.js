@@ -3,12 +3,13 @@ import { StyleSheet, View, Text, FlatList, Pressable, Image, ActivityIndicator }
 import { useContext, useEffect, useState, } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Context } from "../../contexto/provider";
-
+import ShimmerPlaceholder from "react-native-shimmer-placeholder";
 
 export default function TodosPets() {
     const { urlApi } = useContext(Context);
     const [pets, setPets] = useState([]);
     const [loading, setLoading] = useState(false)
+    const [placeholderCount,setPlaceholderCount] = useState(3)
     const navigation = useNavigation();
     useEffect(() => {
         setLoading(true)
@@ -21,7 +22,7 @@ export default function TodosPets() {
                     }
                 });
                 const data = await response.json();
-             
+                setPlaceholderCount(data.length)
                 setPets(data);
             } catch (error) {
                 console.log(error);
@@ -33,6 +34,28 @@ export default function TodosPets() {
     }, []);
 
 
+
+    const renderShimmerPlaceholder =()=>{
+        return(
+            <View
+            style={styles.card}>
+            <ShimmerPlaceholder
+               autoRun={true}
+                style={styles.imgPet}
+            />
+            <View style={styles.descPet}>
+                <ShimmerPlaceholder 
+                autoRun={true}
+                style={styles.shimmerText}
+                />
+                <ShimmerPlaceholder 
+                autoRun={true}
+                style={styles.shimmerText}
+                />
+            </View>
+        </View>
+        )
+    }
 
     const renderItem = ({ item }) => {
         return (
@@ -53,7 +76,13 @@ export default function TodosPets() {
     return (
         <View style={styles.container}>
             {loading ? (
-                <ActivityIndicator size='large' color="blue" />
+                <FlatList
+                 data={[...Array(placeholderCount)]}
+                renderItem={renderShimmerPlaceholder}
+                keyExtractor={(item, index) => index.toString()}
+                numColumns={2}
+                showsHorizontalScrollIndicator={false}
+            />
             ) : (
                 <FlatList
                     data={pets}
@@ -103,4 +132,10 @@ const styles = StyleSheet.create({
         width: '100%',
         marginTop: 10,
     },
+    shimmerText: {
+        height: 20,
+        width: '80%',
+        marginTop: 10,
+        borderRadius: 4,
+      },
 })
