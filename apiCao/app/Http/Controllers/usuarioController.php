@@ -10,6 +10,17 @@ class usuarioController extends Controller
 {
     public function store(Request $request)
     {
+
+        $usuarioExistente = Usuario::where('email_usuario',$request->email_usuario)->first();
+
+        if($usuarioExistente){
+            return response()->json([
+                'message'=>'email ja cadastrado,por favor insira outro email.'
+            ],400);
+            
+        }
+
+
         $usuario = new Usuario();
         $usuario->nome_usuario = $request->nome_usuario;
         $usuario->email_usuario = $request->email_usuario;
@@ -20,9 +31,10 @@ class usuarioController extends Controller
         $usuario->save();
 
         return response()->json([
-            'message' => 'usuario cadastrado'
-        ], 200);
+            'message' => 'Cadastro realizado'
+        ], 201);
     }
+
 
     public function login(Request $request)
     {

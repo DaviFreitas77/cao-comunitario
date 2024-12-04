@@ -3,10 +3,13 @@ import { useContext, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Context } from '../../contexto/provider';
-import Toast from 'react-native-toast-message';
 
-export default function SignUp() {
+import Toast from 'react-native-toast-message';
+import Entypo from '@expo/vector-icons/Entypo';
+import { TextInputMask } from 'react-native-masked-text';
+import { Context } from '../../contexto/provider';
+
+export default function SignUp() {  
     const navigation = useNavigation(); 
     
 
@@ -14,19 +17,25 @@ export default function SignUp() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const {urlApi} = useContext(Context)
+    const{urlApi} = useContext(Context)
+    const [mostrarSenha,setMostrarSenha] = useState(false)
+
 
    
-    const showToast = () => {
+    const showToast = (message,type) => {
         Toast.show({
-          type: 'success', 
-          text1: 'cadastro feito!Bem vindo.',
-          position: 'bottom', 
+          type: type, 
+          text1:message,
+          position: 'top', 
         });
       };
 
 
       const cadastrar = async () => {
+        if(!email || !nome || !numero || !senha ){
+            showToast("Preencha todos os campos",'error');
+            return;
+        }
         try {
             const response = await fetch(`${urlApi}/api/cadastroUsuario`, {
                 method: 'POST',
@@ -42,21 +51,18 @@ export default function SignUp() {
                         'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/usuario%2Ffoto.jpg?alt=media&token=9a11cf8b-5188-4d54-a30c-38e1d67b7696',
                 }),
             });
-    
-            if (response.ok) {
-                const data = await response.json();
-                showToast();
+
+            const data = await response.json();
+
+            if(response.status === 201){
+                showToast(data.message,'success');
                 setTimeout(() => {
-                    navigation.replace('SignIn');
+                    navigation.replace('SignIn')
                 }, 1000);
-            } else {
-                Toast.show({
-                    type: 'error',
-                    text1: 'Erro no cadastro',
-                    text2: 'Por favor, tente novamente.',
-                    position: 'bottom',
-                });
+            }else {
+                showToast(data.message,'error');
             }
+    
         } catch (error) {
             console.error(error);
             Toast.show({
@@ -67,11 +73,11 @@ export default function SignUp() {
             });
         }
     };
-
+    
     return (
         <KeyboardAvoidingView
-            style={styles.container}
-            keyboardVerticalOffset={20}
+        style={styles.container}
+        keyboardVerticalOffset={20}
         >
 
 
@@ -80,8 +86,9 @@ export default function SignUp() {
                 onPress={() => navigation.navigate('Start')}
                 style={{ width: "90%", marginHorizontal:10,
                     height:90,justifyContent:"flex-end"
-                 }}
-            >
+                }}
+                >
+                <Toast/>
                 <FontAwesome name="arrow-left" size={24} color="black" />
             </TouchableOpacity>
             <Image
@@ -104,11 +111,26 @@ export default function SignUp() {
                             placeholder='Digite sua senha'
                             onChangeText={(text) => setSenha(text)}
                             style={styles.input}
-                            secureTextEntry
+                            secureTextEntry={!mostrarSenha}
+                           
                         />
-                        <TextInput
+                        
+                        <TouchableOpacity 
+                        onPress={()=>setMostrarSenha(!mostrarSenha)}
+                        style={styles.eye}>
+                            
+                            <Entypo  name={mostrarSenha ? "eye":"eye-with-line"} size={24} color="black" />
+                        </TouchableOpacity>
+                        <TextInputMask
+                         type={'cel-phone'}
+                         options={{
+                           maskType:'BRL',
+                           withDDD: true,
+                           dddMask:'(99)'
+                         }}
                             placeholder='Digite seu número/whatsapp'
                             onChangeText={(text) => setNumero(text)}
+                            value={numero}
                             style={styles.input}
                             keyboardType='number-pad'
                         />
@@ -121,7 +143,6 @@ export default function SignUp() {
                             </Text>
                         </TouchableOpacity>
                     </View>
-                    <Toast/>
                 </View>
             </ScrollView>
 
@@ -176,4 +197,9 @@ const styles = StyleSheet.create({
     
 
     },
+    eye:{
+        position:"absolute",
+        top:120,
+        right: 60,
+    }
 });

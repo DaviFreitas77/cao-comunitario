@@ -4,24 +4,45 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, KeyboardAvo
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Context } from '../../contexto/provider';
+import Entypo from '@expo/vector-icons/Entypo';
+import Toast from 'react-native-toast-message';
 
 
 
-;
+
 
 export default function SignIn() {
     const navigation = useNavigation();
+    
+
     const { setAdm, adm, setUrlApi, urlApi, setNomeUser, setEmailUser, setNumeroUser, setImagemUser, setIdUser, setIdAdm, setEmailAdm, setImagemAdm, setNumeroAdm } = useContext(Context)
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [loading, setLoading] = useState(false);
+    const [mostrarSenha, setMostrarSenha] = useState(false)
+
+
+       
+    const showToast = (message,type) => {
+        Toast.show({
+          type: type, 
+          text1:message,
+          position: 'top', 
+        });
+      };
+
 
     useEffect(() => {
-        setUrlApi('https://c972-2804-7f0-b900-9a1e-84cd-3c6a-c0a9-2910.ngrok-free.app');
+        setUrlApi('https://7272-2804-7f0-b900-9a1e-3c53-7024-cfae-1c47.ngrok-free.app');
     }, [urlApi])
 
 
     const login = async () => {
+        if(!email || !senha ){
+            showToast("Preencha todos os campos",'error')
+
+            return;
+        }
         setLoading(true)
         try {
             const response = await fetch(`${urlApi}/api/login`, {
@@ -48,8 +69,8 @@ export default function SignIn() {
                 setEmailUser(data['0'].email_usuario)
                 setNumeroUser(data['0'].numero_usuario)
                 setImagemUser(data['0'].imagem_usuario)
-            }else{
-                alert("email ou senha incorretos")
+            } else {
+                showToast("email ou senha incorretos",'error')
             }
 
             console.log(data)
@@ -70,6 +91,7 @@ export default function SignIn() {
                 <TouchableOpacity
                     onPress={() => navigation.navigate('Start')}
                     style={{ width: "90%" }}>
+                <Toast/>
                     <FontAwesome name="arrow-left" size={24} color="black" />
                 </TouchableOpacity>
                 <Image
@@ -92,16 +114,23 @@ export default function SignIn() {
                             placeholder='Digite sua senha'
                             onChangeText={(text) => setSenha(text)}
                             style={styles.input}
+                            secureTextEntry={!mostrarSenha}
                         />
+                        <TouchableOpacity
+                            onPress={() => setMostrarSenha(!mostrarSenha)}
+                            style={styles.eye}>
+
+                            <Entypo name={mostrarSenha ? "eye" : "eye-with-line"} size={24} color="black" />
+                        </TouchableOpacity>
                     </View>
 
                     {loading ? (
-                         <TouchableOpacity
-                         onPress={login}
-                         style={styles.botao}>
-                          <ActivityIndicator size='small' color="blue" />
-                     </TouchableOpacity>
-                      
+                        <TouchableOpacity
+                            onPress={login}
+                            style={styles.botao}>
+                            <ActivityIndicator size='small' color="blue" />
+                        </TouchableOpacity>
+
                     ) : (
                         <TouchableOpacity
                             onPress={login}
@@ -114,7 +143,6 @@ export default function SignIn() {
 
                 </View>
             </ScrollView>
-
             <StatusBar style="auto" />
         </KeyboardAvoidingView>
     );
@@ -157,7 +185,6 @@ const styles = StyleSheet.create({
         borderRadius: 5
     },
     imgDog: {
-
         width: 300,
         zIndex: 1,
     },
@@ -170,4 +197,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'flex-end',
     },
+    eye: {
+        position: "absolute",
+        top: 63,
+        right: 60,
+    }
 });
