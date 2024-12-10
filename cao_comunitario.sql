@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 04/12/2024 às 00:02
+-- Tempo de geração: 11/12/2024 às 00:47
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -181,13 +181,16 @@ CREATE TABLE `sessions` (
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
 ('5a3vYCqqSIyXl2f9SJvLW4NUoxm5TZBJOYgzhQ6B', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiRUxvSEJzUXB6VDViYUJWQk14TVhOV2dteXBRZmJjUnRjUlRpeFlHdyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9kYWJkLTI4MDQtN2YwLWI5MDAtOWExZS1iODA3LWFkNWItNjVmYy1hMDY4Lm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1732318385),
 ('5tn6FFfHPBoQIQpENbLvgOexOrAKstGcGCuZu7XQ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiWVY3TTFuOHBHOEttZXFnVExqaU9zQ2hsdFlNMXlydW9FSTMwaVVEYSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9kYWJkLTI4MDQtN2YwLWI5MDAtOWExZS1iODA3LWFkNWItNjVmYy1hMDY4Lm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1732297000),
+('boCvWuMYjDzKqn4aatkl83CQjqo4cAhDIdbazlb6', NULL, '127.0.0.1', 'okhttp/4.12.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTkl3eDRRMjBNdkNMS1FtZThQRlhiaVM2RjVmOE42YmtGVVlXQTdjWiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly8yYWZhLTI4MDQtN2YwLWI5MDAtOWExZS1hNTA0LTMzNDAtYjQxZC01ZjRiLm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1733798171),
 ('dBbPsrVEMqTBiyv6Lx8IXDtGgm8mu9LqB5YZ7ELM', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTU1SYnFGU0NsbXZTR2liNzI2Tzc4SkNPb0YxOUNTM2ZnZUprU3FCaiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9jMGRhLTI4MDQtN2YwLWI5MDAtYThjNC0zMGNjLTQ3NGEtY2JlZC0xOWZjLm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1731183694),
 ('duQ7zEYKH8TbEElYlzUoOAhnGaG4L1OPvAqrJ3p7', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiTFRacDBGZGg2TDI3aFlFbEhvS1N6T05JeFRZbFFleU5MNEdFRGZTRCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly8xZjJmLTI4MDQtN2YwLWI5MDAtOWExZS01Y2NkLTc0NzctZThjMi02YjAxLm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1732752610),
 ('FIlkH8kD4u58ABjDfoOKzIkpwQih2Cnjr7pbN10M', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiY01QWjJWY0t3Y1g4OWhrQURLREQ1V0c4Rm5SajV4aXRDN2NGV01IZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9lYWIzLTI4MDQtN2YwLWI5MDAtOWExZS04NGNkLTNjNmEtYzBhOS0yOTEwLm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1733241192),
+('iLb0KSnuZgF7kEX75MsI3od0FO1CYhCCh89RmBuU', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibmlxaWJCdjd1UVBPRjM2eW9vazE3U3BDb0VlZkRpMElNb2ZLVEJEZSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly8yYWZhLTI4MDQtN2YwLWI5MDAtOWExZS1hNTA0LTMzNDAtYjQxZC01ZjRiLm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1733790876),
 ('kAk0FApldComLeB9W94q1PC9F8SoCb2OZaIPYm5J', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoidnpaRk1maFNsbG1UQmg5eXRIOUVaVHM4ZFlnd2lCUXVja29MTkpiNiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9mN2Q3LTI4MDQtN2YwLWI5MDAtZDAyYS1kMGMxLTYyMDMtY2QwYi0xYmU4Lm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1731627445),
 ('MeOUWao8HOpCrDcX2LfcFtNCp35Xy5ZM784DQ3oS', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib1dMaFp2dFlZSXdzVEx5TVNWY3dpRE5WSzlDdEpiWnpsS2tYRzlCUCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly9kYWJkLTI4MDQtN2YwLWI5MDAtOWExZS1iODA3LWFkNWItNjVmYy1hMDY4Lm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1732305544),
 ('TPGVx6kYKlK0fC0HUcE3X2ISuYUSjsE0PYqgwqHI', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoibVNBenYzV1BLbUpkamJEWjl5OWUyYjZqTjQzYVVncEhUaVZRRU1GWCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjQ6Imh0dHA6Ly85NDY0LTI4MDQtN2YwLWI5MDAtZDAyYS00M2ItZGEwNC03ODI4LTc4ZjQubmdyb2stZnJlZS5hcHAiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX19', 1731513898),
 ('wIO4JIiPYHUSpoN8qQVKCa4Qr0EJVB4wuN8HFWye', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiT2ZNaE45UlJabEs3R1ZKSEhhZUQxZHpyOVd2UkNRNk9UMjlxM1VxTSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly85MmQ3LTI4MDQtN2YwLWI5MDAtZDAyYS1hNDZkLTNhOTItZjk0Mi0xOWZkLm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1731633739),
+('XYVmFky9uwXAPchV2U8r8ed1QXkMEQxWQRZG8JdG', NULL, '127.0.0.1', 'okhttp/4.12.0', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiYlhwOEM4YU0xUnM5OHI1RjUwOVB0dDJiazRtZzBCY09mYkowUHpqQiI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjU6Imh0dHA6Ly8yYWZhLTI4MDQtN2YwLWI5MDAtOWExZS1hNTA0LTMzNDAtYjQxZC01ZjRiLm5ncm9rLWZyZWUuYXBwIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1733798495),
 ('Y4YchZP9dZhhnrnSOCoZQDxZwHGxLdb5RIBf8qyQ', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoieERiSUp2WjlRU3Z3YXpGdnA3VFNPSktuVWxmWW8xT2JFeENqUXJIcyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1731164974);
 
 -- --------------------------------------------------------
@@ -250,23 +253,27 @@ CREATE TABLE `tb_cuidado_pet` (
 --
 
 INSERT INTO `tb_cuidado_pet` (`id_pet_cuidado`, `fk_pet`, `fk_cuidado`) VALUES
-(79, 36, 1),
-(80, 36, 3),
-(81, 37, 1),
-(82, 37, 2),
-(83, 38, 1),
-(84, 38, 2),
-(85, 39, 5),
-(86, 40, 5),
-(87, 41, 1),
-(88, 41, 3),
-(89, 41, 4),
-(90, 41, 2),
-(91, 41, 5),
-(92, 42, 3),
-(93, 42, 1),
-(94, 42, 2),
-(95, 42, 4);
+(96, 43, 5),
+(97, 44, 5),
+(98, 45, 1),
+(99, 45, 3),
+(100, 45, 2),
+(101, 46, 1),
+(102, 46, 2),
+(103, 46, 3),
+(104, 46, 4),
+(105, 47, 1),
+(106, 48, 1),
+(107, 49, 1),
+(108, 49, 2),
+(109, 50, 1),
+(110, 50, 2),
+(111, 51, 1),
+(112, 52, 1),
+(113, 52, 2),
+(114, 53, 1),
+(115, 53, 2),
+(116, 54, 1);
 
 -- --------------------------------------------------------
 
@@ -330,13 +337,18 @@ CREATE TABLE `tb_pet` (
 --
 
 INSERT INTO `tb_pet` (`id_pet`, `nome_pet`, `tipo_pet`, `genero_pet`, `idade_pet`, `raca_pet`, `imagem_Pet`, `sobre_pet`) VALUES
-(36, 'Titi', 2, 1, 1, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F1a7d04ae-f6fe-4f06-8f9d-052d30c27e28.jpeg?alt=media&token=9c705bdd-f091-4b5f-822a-c17ed493ebe2', 'Gatinho muito lindo hehehehehehehehehehehehehehehejehehehejehrhrhrhrhrhrhrhrhrhehehehrhrhrhrhehrhrhehrhehehehehehehehehehehehehehehehehehehheehehehehehheehehehehehehehehehehehehhehrhrheheheehhehddhdhehehehehehhdhdhddhdhdhdhdhdhdhd'),
-(37, 'Bob', 1, 1, 2, 'Puddle', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F81685525-3d23-4ce1-b758-23cab30393ab.jpeg?alt=media&token=299ceed1-ef1f-4806-abbc-af485b6a4c6d', 'Jdjdjdhdh'),
-(38, 'davi', 1, 1, 1, 'puddle', 'aaaa', 'asdasdsd'),
-(39, 'Lobinho', 2, 1, 1, 'Não sei', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F0e21cf73-02b3-4450-abb1-65b5d45bf68a.jpeg?alt=media&token=f2b5cdf1-c0fe-4127-a03b-4e06ad040437', 'Gatinho muito lindo'),
-(40, 'Nala', 2, 2, 1, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F74250565-c0ee-4b68-abc7-fd8ab53015cc.jpeg?alt=media&token=1183332e-27cd-4587-a879-1dfd358e92e0', 'Gatinha maravilhosa'),
-(41, 'Nala', 2, 2, 1, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2Fc030e73c-7170-439a-a298-7f7076247390.jpeg?alt=media&token=442db4b4-65b7-440d-b704-50bd0321b370', 'Muito linda'),
-(42, 'Simba', 1, 1, 3, 'Puddle', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2Fae7c87e5-313f-4f01-afa3-d160846657bf.jpeg?alt=media&token=bb3931a9-1077-4c70-b52f-fb870642c8ac', 'Lindo');
+(43, 'Nala', 2, 2, 1, 'Não sei', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2Feceb9949-5437-4bfa-bd9c-75ae46d1d997.jpeg?alt=media&token=64517507-c544-4f96-b7d2-3b03463bc914', 'Muito linda'),
+(44, 'Simba', 2, 1, 1, 'Não sei', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2Ff544ee57-c4c4-4eff-b788-153c53ea9143.jpeg?alt=media&token=c9472af3-719b-4d95-9b44-eb52d17f1421', 'Gato modelo,sai bem nas foto tudo'),
+(45, 'Piratas do osso', 1, 1, 2, 'Pirata', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2Ff750eeb6-bed1-48be-91b6-2e3c4bde0e84.jpeg?alt=media&token=31ba04ab-30d7-4c33-828b-6a353db130ed', 'Ele se veste de pirata a sai na rua caçando osso com sua gangue de caramelo, tenho medo e estou doando'),
+(46, 'Atila', 2, 1, 3, 'Garanhão', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F191428ef-1a8f-4b31-accd-f73114ba651b.jpeg?alt=media&token=a86acdbe-38e5-49fd-9fc2-0eb3be3de2c4', 'Gagagagaranhao'),
+(47, 'Faixa', 1, 2, 2, 'H', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2Fd17deb01-93ba-41d1-b414-397a504e05a3.jpeg?alt=media&token=87715ffa-d93f-41f0-b41e-6aa49bd7e9a2', 'Aaaaa'),
+(48, 'Jugo', 1, 1, 2, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F056d8224-6124-48d2-8f35-f5c4a2d4bdb7.jpeg?alt=media&token=748851dc-f6a8-4acd-b9ed-15fcd7257f08', 'Gg'),
+(49, 'daivz', 1, 1, 2, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F7f076a95-8b9e-4262-a001-448a6000ec5f.jpeg?alt=media&token=65a0ba5c-4445-47e2-83a1-1d0cfa0f91a0', 'lindo'),
+(50, 'Gais', 2, 2, 2, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F62e22afa-8eee-4344-9843-b2e214e9fadb.png?alt=media&token=a610fb83-a912-4d6d-a061-2e025c998bc4', 'Lindo'),
+(51, 'Hj', 1, 1, 3, 'H', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F4d97b703-6b89-4c1e-ba80-ab340b0035ac.png?alt=media&token=67574c49-fb40-4005-a665-2c1077797917', 'Bb'),
+(52, 'Gla', 1, 1, 1, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F0918c255-4dee-4b85-9878-705c6481596e.png?alt=media&token=ace21504-5241-422c-aaa0-c368174aee03', 'Gg'),
+(53, 'Faixazinho', 1, 1, 2, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2F81b500e2-fe58-4edd-a15d-968a389c78bc.png?alt=media&token=e43ae5f1-a5c6-418d-bd80-47f85bf0837b', 'Faixazinho'),
+(54, 'Faixa', 1, 1, 2, NULL, 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/pets%2Fb1c70727-f0f5-47ce-ba0b-6d262e316eaf.png?alt=media&token=c470bea1-cd7b-47fa-9279-17799158c1e2', 'Fc');
 
 -- --------------------------------------------------------
 
@@ -355,12 +367,7 @@ CREATE TABLE `tb_pet_favoritado` (
 --
 
 INSERT INTO `tb_pet_favoritado` (`id_favorito`, `fk_usuario`, `fk_pet`) VALUES
-(42, 15, 36),
-(43, 15, 37),
-(44, 15, 42),
-(45, 15, 39),
-(46, 15, 40),
-(47, 15, 41);
+(57, 43, 45);
 
 -- --------------------------------------------------------
 
@@ -379,30 +386,37 @@ CREATE TABLE `tb_pet_temperamento` (
 --
 
 INSERT INTO `tb_pet_temperamento` (`id_pet_temperamento`, `fk_pet`, `fk_temperamento`) VALUES
-(101, 36, 5),
-(102, 37, 3),
-(103, 37, 1),
-(104, 38, 1),
-(105, 38, 2),
-(106, 39, 1),
-(107, 39, 2),
-(108, 39, 7),
-(109, 39, 10),
-(110, 39, 11),
-(111, 40, 1),
-(112, 40, 7),
-(113, 41, 2),
-(114, 41, 4),
-(115, 41, 3),
-(116, 41, 6),
-(117, 41, 5),
-(118, 41, 8),
-(119, 41, 10),
-(120, 41, 7),
-(121, 42, 3),
-(122, 42, 6),
-(123, 42, 5),
-(124, 42, 8);
+(125, 43, 1),
+(126, 43, 2),
+(127, 43, 7),
+(128, 43, 10),
+(129, 43, 11),
+(130, 44, 1),
+(131, 44, 2),
+(132, 44, 6),
+(133, 44, 7),
+(134, 44, 11),
+(135, 44, 10),
+(136, 45, 3),
+(137, 45, 8),
+(138, 45, 9),
+(139, 45, 5),
+(140, 46, 1),
+(141, 46, 2),
+(142, 46, 4),
+(143, 46, 6),
+(144, 46, 9),
+(145, 46, 12),
+(146, 47, 1),
+(147, 48, 5),
+(148, 49, 5),
+(149, 49, 1),
+(150, 50, 1),
+(151, 50, 2),
+(152, 51, 5),
+(153, 52, 1),
+(154, 53, 1),
+(155, 54, 3);
 
 -- --------------------------------------------------------
 
@@ -464,16 +478,17 @@ CREATE TABLE `tb_usuario` (
   `email_usuario` varchar(255) NOT NULL,
   `senha_usuario` varchar(255) NOT NULL,
   `numero_usuario` varchar(255) NOT NULL,
-  `imagem_usuario` varchar(300) NOT NULL
+  `imagem_usuario` varchar(300) NOT NULL,
+  `token` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Despejando dados para a tabela `tb_usuario`
 --
 
-INSERT INTO `tb_usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_usuario`, `numero_usuario`, `imagem_usuario`) VALUES
-(15, 'davi', 'davi@gmail.com', '123456', '11952041573', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/images%2F4eea722d-dde7-4021-9691-e429cd7b16b0.png?alt=media&token=5357a68f-59e3-4ff3-a218-aaa48656370c'),
-(17, 'Faixa', 'davifreitaz999@gmail.com', '123456', '11952041573', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/usuario%2Ffoto.jpg?alt=media&token=9a11cf8b-5188-4d54-a30c-38e1d67b7696');
+INSERT INTO `tb_usuario` (`id_usuario`, `nome_usuario`, `email_usuario`, `senha_usuario`, `numero_usuario`, `imagem_usuario`, `token`) VALUES
+(43, 'Davi', 'davi@gmail.com', '123356', '(11)95204-1573', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/usuario%2Ffoto.jpg?alt=media&token=9a11cf8b-5188-4d54-a30c-38e1d67b7696', 'ExponentPushToken[7TYKNQJ9rhZ3qHvEe4cxwd]'),
+(44, 'faixa', 'faixa@gmail.com', '123456', '(11)95204-1573', 'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/usuario%2Ffoto.jpg?alt=media&token=9a11cf8b-5188-4d54-a30c-38e1d67b7696', 'ExponentPushToken[1ZtfMnLJ0LEBI9Aep2fDjB]');
 
 -- --------------------------------------------------------
 
@@ -682,7 +697,7 @@ ALTER TABLE `tb_cuidado`
 -- AUTO_INCREMENT de tabela `tb_cuidado_pet`
 --
 ALTER TABLE `tb_cuidado_pet`
-  MODIFY `id_pet_cuidado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id_pet_cuidado` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT de tabela `tb_genero`
@@ -700,19 +715,19 @@ ALTER TABLE `tb_idade`
 -- AUTO_INCREMENT de tabela `tb_pet`
 --
 ALTER TABLE `tb_pet`
-  MODIFY `id_pet` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_pet` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
 
 --
 -- AUTO_INCREMENT de tabela `tb_pet_favoritado`
 --
 ALTER TABLE `tb_pet_favoritado`
-  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_favorito` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de tabela `tb_pet_temperamento`
 --
 ALTER TABLE `tb_pet_temperamento`
-  MODIFY `id_pet_temperamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id_pet_temperamento` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=156;
 
 --
 -- AUTO_INCREMENT de tabela `tb_temperamento`
@@ -730,7 +745,7 @@ ALTER TABLE `tb_tipo`
 -- AUTO_INCREMENT de tabela `tb_usuario`
 --
 ALTER TABLE `tb_usuario`
-  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id_usuario` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de tabela `users`
