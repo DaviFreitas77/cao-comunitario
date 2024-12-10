@@ -23,7 +23,6 @@ import EditarPerfil from './src/pages/PerfilUser/editar';
 import Sobre from './src/componentes/Sobre';
 import Doacao from './src/pages/Doacao';
 import TodosPets from './src/pages/TodosPets';
-//adm
 import InicioAdm from './src/pages/areaAdm/InicioAdm';
 import Post from './src/pages/areaAdm/Post';
 import PerfilAdm from './src/pages/areaAdm/PerfilAdm';
@@ -127,9 +126,10 @@ function MyStack() {
         <Stack.Screen name="Start" component={Start} options={{ headerShown: false }} />
         <Stack.Screen name="SignIn" component={SignIn} options={{ headerShown: false }} />
         <Stack.Screen name="SignUp" component={SignUp} options={{ headerShown: false }} />
+   
         <Stack.Screen name="InicioUser" component={TabNavigator} options={{ headerShown: false }} />
         <Stack.Screen name="PetInfo" component={PetInfo} options={{ headerShown: false }} />
-        <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{ headerShown: false }} />
+        <Stack.Screen name="EditarPerfil" component={EditarPerfil} options={{ headerShown: false }} /> 
         <Stack.Screen name="TodosPets" component={TodosPets} options={{ headerShown: true ,
         headerTitle:"Todos Pets",
         headerTitleAlign:'center',

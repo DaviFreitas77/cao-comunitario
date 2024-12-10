@@ -35,7 +35,7 @@ const Categoria = () => {
                     }
                 });
                 const data = await response.json();
-                console.log(data)
+             
                 setPets(data);
             } catch (error) {
                 console.log(error);

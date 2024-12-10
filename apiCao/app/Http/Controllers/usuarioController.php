@@ -27,6 +27,7 @@ class usuarioController extends Controller
         $usuario->senha_usuario = $request->senha_usuario;
         $usuario->numero_usuario = $request->telefone_usuario;
         $usuario->imagem_usuario = $request->imagem_usuario;
+        $usuario->token = $request->token;
 
         $usuario->save();
 

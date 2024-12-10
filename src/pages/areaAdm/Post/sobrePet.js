@@ -11,6 +11,8 @@ import { storage } from '../../../service/conexaoFirebase';
 import { ref, getDownloadURL, uploadBytes } from 'firebase/storage'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import ModalPetCadastrado from '../../../componentes/Modal';
+import * as Notifications from 'expo-notifications';
+
 
 const SobrePet = () => {
     const [loading, setLoading] = useState(false);
@@ -18,7 +20,27 @@ const SobrePet = () => {
     const { urlApi, nomePet, generoPet, idadePet, tipoPet, racaPet, cuidadoPet, temperamentoPet, setGeneroPet, setIdadePet, setRacaPet, setCuidadoPet, setTemperamentoPet, setNomePet, urlImage, setUrlImage,setImage,image } = useContext(Context)
     const [sobrePet, setSobrePet] = useState('')
     const [modalVisible, setModalVisible] = useState(false);
-
+    
+   
+    // const sendNotificationToUser = async (message) => {
+    //     try {
+    //         const response = await fetch(`${urlApi}/api/notificacao`, {
+    //             method: 'POST',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify({
+    //                 message: message,  
+    //             }),
+    //         });
+    
+    //         const data = await response.json();
+          
+    //     } catch (error) {
+    //         console.error('Erro ao enviar notificação:', error);
+    //     }
+    // };
+  
 
 
     const fecharModal = () => {
@@ -50,6 +72,7 @@ const SobrePet = () => {
 
             const data = await response.json();
             console.log('Pet cadastrado com sucesso:', data);
+            // sendNotificationToUser('Você tem um novo pet disponivel para adoção');
             setModalVisible(true);
             setNomePet('')
             setGeneroPet('')

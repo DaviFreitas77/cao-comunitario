@@ -1,9 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+// import { Platform } from 'react-native';
+import { useContext, useEffect } from 'react';
+import * as Notifications from 'expo-notifications';
+import { Context } from '../../contexto/provider';
+
 
 export default function Start() {
-    const navigation = useNavigation();         
+    // const { setToken, token } = useContext(Context)
+
+    // useEffect(() => {
+    //     const getPermission = async () => {
+    //         const { status } = await Notifications.requestPermissionsAsync();
+
+    //         if (status === 'granted') {
+    //             const token = await Notifications.getExpoPushTokenAsync();
+    //             setToken(token.data)
+
+    //         } else {
+    //             console.log('Permissão para notificações negada!');
+    //         }
+    //     }
+    //     getPermission()
+    // }, [])
+    // console.log(token)
+    const navigation = useNavigation();
     return (
         <View style={styles.container}>
             <View style={styles.ViewRedonda}>
@@ -20,10 +42,10 @@ export default function Start() {
                 />
 
                 <View style={styles.containerBotao}>
-                    <TouchableOpacity  onPress={()=>navigation.navigate('SignIn')} style={styles.botao}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignIn')} style={styles.botao}>
                         <Text style={styles.txtBotao}>Entrar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={()=>navigation.navigate('SignUp')} style={styles.botao}>
+                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')} style={styles.botao}>
                         <Text style={styles.txtBotao}>Cadastrar</Text>
                     </TouchableOpacity>
                 </View>
@@ -61,28 +83,28 @@ const styles = StyleSheet.create({
     containerTitulo: {
         alignItems: "center",
         flex: .4,
-        justifyContent:'space-around',
-        width:"100%"
+        justifyContent: 'space-around',
+        width: "100%"
     },
     logo: {
         width: 310,
-         height: 120
+        height: 120
     },
-    containerBotao:{
-        width:"100%",
-        gap:10,
-        alignItems:"center",
-        paddingBottom:10
+    containerBotao: {
+        width: "100%",
+        gap: 10,
+        alignItems: "center",
+        paddingBottom: 10
     },
-    botao:{
-        backgroundColor:"#ccf3dc",
-        width:'80%',
-        alignItems:"center",
-        padding:20,
-        borderRadius:10
+    botao: {
+        backgroundColor: "#ccf3dc",
+        width: '80%',
+        alignItems: "center",
+        padding: 20,
+        borderRadius: 10
     },
-    txtBotao:{
-        fontWeight:'bold',
-        fontSize:17,
+    txtBotao: {
+        fontWeight: 'bold',
+        fontSize: 17,
     }
 });

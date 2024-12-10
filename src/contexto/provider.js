@@ -15,6 +15,7 @@ export default function Provider ({children}){
     const [imagemAdm,setImagemAdm] = useState("")
     const [emailAdm,setEmailAdm] = useState('')
     const [numeroAdm,setNumeroAdm] = useState('')
+    const [token,setToken] = useState('')
 
     const [nomePet,setNomePet] = useState('')
     const [idadePet,setIdadePet] = useState('')
@@ -27,7 +28,7 @@ export default function Provider ({children}){
     const [urlImage,setUrlImage]= useState("")
 
     return(
-        <Context.Provider value={{adm,setAdm,setUrlApi,urlApi,nomeUser,setNomeUser,emailUser,setEmailUser,setNumeroUser,numeroUser,setImagemUser,imagemUser,setIdUser,idUser,idAdm,setIdAdm,setImagemAdm,imagemAdm,setEmailAdm,emailAdm,setNumeroAdm,numeroAdm,setNomePet,nomePet,setIdadePet,idadePet,setGeneroPet,generoPet,setRacaPet,racaPet,setCuidadoPet,cuidadoPet,setTemperamentoPet,temperamentoPet,setTipoPet,tipoPet,setImage,image,setUrlImage,urlImage}}>
+        <Context.Provider value={{adm,setAdm,setUrlApi,urlApi,nomeUser,setNomeUser,emailUser,setEmailUser,setNumeroUser,numeroUser,setImagemUser,imagemUser,setIdUser,idUser,idAdm,setIdAdm,setImagemAdm,imagemAdm,setEmailAdm,emailAdm,setNumeroAdm,numeroAdm,setNomePet,nomePet,setIdadePet,idadePet,setGeneroPet,generoPet,setRacaPet,racaPet,setCuidadoPet,cuidadoPet,setTemperamentoPet,temperamentoPet,setTipoPet,tipoPet,setImage,image,setUrlImage,urlImage,setToken,token}}>
             {children}        
         </Context.Provider>
     )

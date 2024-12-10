@@ -9,6 +9,9 @@ import Header from '../../../componentes/Header';
 export default function InicioAdm() {
 const {imagemAdm} = useContext(Context)
 
+
+
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
