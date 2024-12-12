@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "caoComunitario",
-    "slug": "caoComunitario",
+    "name": "dog",
+    "slug": "dog",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,16 +18,17 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#ffffff",
+        "permissions": ["POST_NOTIFICATIONS"]
       },
-      "package": "com.davifreitas.caoComunitario"
+      "package": "com.davideveloper7.dog"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        "projectId": "4f273dd2-23e7-41e1-992d-17afe3be4143"
+        "projectId": "3c7545e2-9cf6-4eb4-9ad4-385cd46ae34e"
       }
     }
   }

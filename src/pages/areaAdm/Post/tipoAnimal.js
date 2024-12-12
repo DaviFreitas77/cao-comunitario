@@ -3,7 +3,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { Context } from '../../../contexto/provider';
-import RNPickerSelect from 'react-native-picker-select';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import { useNavigation } from '@react-navigation/native';
 import Picker from 'react-native-picker-select';

@@ -129,7 +129,7 @@ const ImagemPet = () => {
                     </Pressable>
 
                 ) : (
-                    <Pressable onPress={()=>navigation.navigate('SobrePet')} style={[styles.button, { backgroundColor: '#ccf3dc' }]}>
+                    <Pressable onPress={()=>navigation.navigate('sobrePet')} style={[styles.button, { backgroundColor: '#ccf3dc' }]}>
                         <EvilIcons name="arrow-right" size={24} color="black" />
                     </Pressable>
 

@@ -51,7 +51,7 @@ export default function SignUp() {
                     token: token,
                 }),
             });
-
+    
             const data = await response.json();
 
             if(response.status === 201){

@@ -1,31 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-// import { Platform } from 'react-native';
 import { useContext, useEffect } from 'react';
-import * as Notifications from 'expo-notifications';
 import { Context } from '../../contexto/provider';
+import * as Notifications from 'expo-notifications';
+
+
+
 
 
 export default function Start() {
-    // const { setToken, token } = useContext(Context)
 
-    // useEffect(() => {
-    //     const getPermission = async () => {
-    //         const { status } = await Notifications.requestPermissionsAsync();
-
-    //         if (status === 'granted') {
-    //             const token = await Notifications.getExpoPushTokenAsync();
-    //             setToken(token.data)
-
-    //         } else {
-    //             console.log('Permissão para notificações negada!');
-    //         }
-    //     }
-    //     getPermission()
-    // }, [])
-    // console.log(token)
     const navigation = useNavigation();
+       const { setToken, token } = useContext(Context)
+
+       useEffect(() => {
+        const getPermission = async () => {
+          try {
+            const { status } = await Notifications.requestPermissionsAsync();
+            if (status === 'granted') {
+              const token = await Notifications.getExpoPushTokenAsync();
+              setToken(token.data);
+            } else {
+              console.log('Permissão para notificações negada!');
+            }
+          } catch (error) {
+            console.error('Erro ao obter token:', error);
+          }
+        };
+        getPermission();
+      }, []);
+    
+    console.log(token)
     return (
         <View style={styles.container}>
             <View style={styles.ViewRedonda}>
@@ -42,10 +48,14 @@ export default function Start() {
                 />
 
                 <View style={styles.containerBotao}>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignIn')} style={styles.botao}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('SignIn')}
+                        style={styles.botao}>
                         <Text style={styles.txtBotao}>Entrar</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')} style={styles.botao}>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate('SignUp')}
+                        style={styles.botao}>
                         <Text style={styles.txtBotao}>Cadastrar</Text>
                     </TouchableOpacity>
                 </View>
@@ -59,7 +69,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center', // Para centralizar a imagem horizontalmente
+        alignItems: 'center',
     },
     ViewRedonda: {
         backgroundColor: "#ccf3dc",
