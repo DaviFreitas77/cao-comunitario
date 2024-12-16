@@ -14,6 +14,7 @@ A plataforma foi criada com **React Native** para o desenvolvimento do aplicativ
 
 - **React Native**: Framework para o desenvolvimento de aplicativos móveis nativos.
 - **Laravel**: Framework PHP para desenvolvimento da API back-end.
+- **Firebase Storage** para armazenar e servir as imagens dos animais disponíveis para adoção de maneira eficiente e segura.
   
 ## Funcionalidades
 
