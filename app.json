@@ -1,6 +1,7 @@
 {
   "expo": {
     "name": "dog",
+    "permissions": ["NOTIFICATIONS"],
     "slug": "dog",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -18,8 +19,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff",
-        "permissions": ["POST_NOTIFICATIONS"]
+        "backgroundColor": "#ffffff"
       },
       "package": "com.davideveloper7.dog"
     },

@@ -9,6 +9,7 @@ import Entypo from '@expo/vector-icons/Entypo';
 import { TextInputMask } from 'react-native-masked-text';
 import { Context } from '../../contexto/provider';
 
+
 export default function SignUp() {  
     const navigation = useNavigation(); 
 
@@ -48,7 +49,7 @@ export default function SignUp() {
                     telefone_usuario: numero,
                     imagem_usuario:
                         'https://firebasestorage.googleapis.com/v0/b/caocomunitario-14068.appspot.com/o/usuario%2Ffoto.jpg?alt=media&token=9a11cf8b-5188-4d54-a30c-38e1d67b7696',
-                    token: token,
+                  
                 }),
             });
     

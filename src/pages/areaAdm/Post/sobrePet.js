@@ -22,25 +22,7 @@ const SobrePet = () => {
     const [modalVisible, setModalVisible] = useState(false);
     
    
-    const sendNotificationToUser = async (message) => {
-        try {
-            const response = await fetch(`${urlApi}/api/notificacao`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    message: message,  
-                }),
-            });
     
-            const data = await response.json();
-          
-        } catch (error) {
-            console.error('Erro ao enviar notificação:', error);
-        }
-    };
-  
 
 
     const fecharModal = () => {
@@ -71,8 +53,8 @@ const SobrePet = () => {
 
 
             const data = await response.json();
-            console.log('Pet cadastrado com sucesso:', data);
-            sendNotificationToUser('Você tem um novo pet disponivel para adoção');
+
+          
             setModalVisible(true);
             setNomePet('')
             setGeneroPet('')

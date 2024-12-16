@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Context } from '../../contexto/provider';
 import * as Notifications from 'expo-notifications';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 
@@ -12,26 +12,11 @@ import * as Notifications from 'expo-notifications';
 export default function Start() {
 
     const navigation = useNavigation();
-       const { setToken, token } = useContext(Context)
+       const { setToken, token} = useContext(Context)
 
-       useEffect(() => {
-        const getPermission = async () => {
-          try {
-            const { status } = await Notifications.requestPermissionsAsync();
-            if (status === 'granted') {
-              const token = await Notifications.getExpoPushTokenAsync();
-              setToken(token.data);
-            } else {
-              console.log('Permissão para notificações negada!');
-            }
-          } catch (error) {
-            console.error('Erro ao obter token:', error);
-          }
-        };
-        getPermission();
-      }, []);
-    
-    console.log(token)
+       console.log('token resetado',token)
+
+
     return (
         <View style={styles.container}>
             <View style={styles.ViewRedonda}>
@@ -52,6 +37,7 @@ export default function Start() {
                         onPress={() => navigation.navigate('SignIn')}
                         style={styles.botao}>
                         <Text style={styles.txtBotao}>Entrar</Text>
+                        
                     </TouchableOpacity>
                     <TouchableOpacity
                         onPress={() => navigation.navigate('SignUp')}

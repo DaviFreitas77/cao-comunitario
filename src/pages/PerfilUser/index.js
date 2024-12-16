@@ -1,6 +1,6 @@
 // App.js
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { StyleSheet, Text, View, Image, Pressable,Linking} from 'react-native';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
@@ -10,9 +10,10 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
 import { Context } from '../../contexto/provider';
 
+
 const PerfilUser = () => {
 
-  
+ 
   const openGmail=()=>{
     const email = "dfreitas.developer@gmail.com"; 
     const subject = "Aplicativo Cão comunitário"; 
@@ -95,9 +96,11 @@ const PerfilUser = () => {
             </View>
             <AntDesign name="arrowright" size={24} color="#dfdfdf" />
           </Pressable>
+
           <Pressable 
-          onPress={()=>{
-            navigation.navigate('Start')
+          onPress={() => {
+        
+            navigation.navigate('Start');
           }}
           style={[styles.botao, { borderBottomColor: "white" }]}>
             <View style={{ flexDirection: "row", gap: 10 }}>

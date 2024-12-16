@@ -52,10 +52,11 @@ class usuarioController extends Controller
         $usuario = Usuario::where('email_usuario', $request->email)->first();
 
         if ($usuario && $request->senha === $usuario->senha_usuario) {
-            return response()->json([
-                'message' => 'Login como usuário bem-sucedido.',
-                $usuario
-            ], 200);
+                return response()->json([
+                    'message' => 'Login como usuário bem-sucedido.',
+                    $usuario
+                ], 200);
+        
         }
 
         return response()->json([

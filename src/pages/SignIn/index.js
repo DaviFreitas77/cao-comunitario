@@ -11,14 +11,18 @@ import Toast from 'react-native-toast-message';
 
 
 
+
+
 export default function SignIn() {
     const navigation = useNavigation();
     
-    const { setAdm, adm, setUrlApi, urlApi, setNomeUser, setEmailUser, setNumeroUser, setImagemUser, setIdUser, setIdAdm, setEmailAdm, setImagemAdm, setNumeroAdm } = useContext(Context)
+    const { setAdm, adm, setUrlApi, urlApi, setNomeUser, setEmailUser, setNumeroUser, setImagemUser, setIdUser, setIdAdm, setEmailAdm, setImagemAdm, setNumeroAdm,token,setToken } = useContext(Context)
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [loading, setLoading] = useState(false);
     const [mostrarSenha, setMostrarSenha] = useState(false)
+
+
 
 
        
@@ -32,7 +36,7 @@ export default function SignIn() {
 
 
     useEffect(() => {
-        setUrlApi('https://edb4-2804-7f0-b900-9a1e-f89e-a3df-691-fff2.ngrok-free.app');
+        setUrlApi('https://ac99-2804-7f0-b900-9a1e-d1e6-c711-b66b-117.ngrok-free.app');
     }, [urlApi])
 
 
@@ -44,6 +48,7 @@ export default function SignIn() {
         }
         setLoading(true)
         try {
+            
             const response = await fetch(`${urlApi}/api/login`, {
                 method: "POST",
                 headers: {
@@ -62,12 +67,13 @@ export default function SignIn() {
                 setImagemAdm(data['0'].imagem_admin)
                 setNumeroAdm(data['0'].numero_admin)
             } else if (data.message === 'Login como usuário bem-sucedido.') {
-                navigation.replace('InicioUser')
+                navigation.navigate('InicioUser')
                 setIdUser(data['0'].id_usuario)
                 setNomeUser(data['0'].nome_usuario)
                 setEmailUser(data['0'].email_usuario)
                 setNumeroUser(data['0'].numero_usuario)
                 setImagemUser(data['0'].imagem_usuario)
+              
             } else {
                 showToast("email ou senha incorretos",'error')
             }

@@ -4,12 +4,16 @@ import { StyleSheet, Text, View, Image, TextInput, ScrollView, FlatList } from '
 import Feather from '@expo/vector-icons/Feather';
 import Categoria from '../../componentes/Categoria';
 
+
 import Header from '../../componentes/Header';
 import { Context } from '../../contexto/provider';
 
 export default function InicioUser() {
     const {nomeUser,imagemUser} = useContext(Context)
-    console.log(imagemUser)
+
+
+ 
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.header}>
